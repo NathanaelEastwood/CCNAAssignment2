@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 
 namespace DatabaseGateway
@@ -73,14 +74,12 @@ namespace DatabaseGateway
 
         protected OracleConnection CreateConnection()
         {
-            string dbUsername;
-            string dbPassword;
+            var credentials = DatabaseCredentialsManager.GetCredentials();
 
-            LoadDatabaseCredentialsFromFile(out dbUsername, out dbPassword);
-
-            string DB_CONNECTION_STRING
-                = "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = vmp3wstuoradb1.staff.staffs.ac.uk)(PORT = 1521))"
-                    + "(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = STORAPDB.staff.staffs.ac.uk)));User Id=" + dbUsername + ";Password=" + dbPassword + ";";
+            string DB_CONNECTION_STRING =
+                "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=vmp3wstuoradb1.staff.staffs.ac.uk)(PORT=1521))" +
+                "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=STORAPDB.staff.staffs.ac.uk)));enlist=dynamic;" +
+                $"User Id={credentials.Username};Password={credentials.Password};";
 
             OracleConnection conn = null;
 
@@ -95,26 +94,6 @@ namespace DatabaseGateway
             }
 
             return conn;
-        }
-
-        private void LoadDatabaseCredentialsFromFile(out string username, out string password)
-        {
-            Console.Write("Oracle database username: > ");
-            username = Console.ReadLine();
-            Console.Write("Oracle database_ password: > ");
-            password = Console.ReadLine();
-
-            //FileInfo dbCredsFile = new FileInfo("db_creds.txt");
-            //FileStream dbCredsStream = dbCredsFile.OpenRead();
-            //StreamReader dbCredsReader = new StreamReader(dbCredsStream);
-
-            //dbCredsReader.ReadLine(); //disregard comment line
-
-            //string[] parts = dbCredsReader.ReadLine().Split(':'); //read credentials line
-            //username = parts[0];
-            //password = parts[1];
-
-            //dbCredsReader.Close();
         }
 
         public void ReleaseConnection(OracleConnection conn)

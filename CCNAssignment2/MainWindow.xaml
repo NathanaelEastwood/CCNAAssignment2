@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CCNAssignment2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Library Management System" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock Text="Library Management System" 
+                 FontSize="24" 
+                 HorizontalAlignment="Center" 
+                 Margin="0,20,0,20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Loan Operations -->
+            <GroupBox Grid.Column="0" Header="Loan Operations" Margin="10">
+                <StackPanel Margin="10">
+                    <Button Content="Borrow Book" Margin="0,5" Padding="5"/>
+                    <Button Content="Return Book" Margin="0,5" Padding="5"/>
+                    <Button Content="Renew Loan" Margin="0,5" Padding="5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- View Operations -->
+            <GroupBox Grid.Column="1" Header="View Operations" Margin="10">
+                <StackPanel Margin="10">
+                    <Button Content="View All Books" Margin="0,5" Padding="5"/>
+                    <Button Content="View All Members" Margin="0,5" Padding="5"/>
+                    <Button Content="View Current Loans" Margin="0,5" Padding="5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Results Area -->
+            <GroupBox Grid.Column="2" Header="Results" Margin="10">
+                <ScrollViewer Margin="10">
+                    <TextBlock x:Name="ResultsTextBlock" 
+                             TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </GroupBox>
+        </Grid>
     </Grid>
 </Window>
