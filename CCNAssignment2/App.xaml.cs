@@ -13,15 +13,8 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-        var loginWindow = new DatabaseLoginWindow();
-        if (loginWindow.ShowDialog() == true)
-        {
-            var mainWindow = new MainWindow(loginWindow.Credentials);
-            mainWindow.Show();
-        }
-        else
-        {
-            Shutdown();
-        }
+        // Create and show the main window
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
     }
 }

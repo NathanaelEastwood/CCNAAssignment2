@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -6,7 +7,6 @@ namespace DatabaseGateway
 {
     class DatabaseInitialiser
     {
-
         private readonly OracleCommand createBookSeq = new OracleCommand
         {
             CommandText = "CREATE SEQUENCE SDAM_Book_Seq START WITH 1001 INCREMENT BY 1",
@@ -51,7 +51,7 @@ namespace DatabaseGateway
 
         private readonly OracleCommand dropBookTable = new OracleCommand
         {
-            CommandText = "DROP TABLE SDAM_Book",
+            CommandText = "DROP TABLE SDAM_Book CASCADE CONSTRAINTS",
             CommandType = CommandType.Text
         };
 
@@ -63,7 +63,7 @@ namespace DatabaseGateway
 
         private readonly OracleCommand dropLoanTable = new OracleCommand
         {
-            CommandText = "DROP TABLE SDAM_Loan",
+            CommandText = "DROP TABLE SDAM_Loan CASCADE CONSTRAINTS",
             CommandType = CommandType.Text
         };
 
@@ -75,7 +75,7 @@ namespace DatabaseGateway
 
         private readonly OracleCommand dropMemberTable = new OracleCommand
         {
-            CommandText = "DROP TABLE SDAM_Member",
+            CommandText = "DROP TABLE SDAM_Member CASCADE CONSTRAINTS",
             CommandType = CommandType.Text
         };
 
@@ -85,21 +85,19 @@ namespace DatabaseGateway
         {
             commandSequence = new List<OracleCommand>()
             {
+                // Drop tables in reverse dependency order
                 dropLoanTable,
                 dropLoanSeq,
-
+                dropBookTable,
+                dropBookSeq,
                 dropMemberTable,
                 dropMemberSeq,
 
-                dropBookTable,
-                dropBookSeq,
-
-                createBookTable,
-                createBookSeq,
-
+                // Create tables in dependency order
                 createMemberTable,
                 createMemberSeq,
-
+                createBookTable,
+                createBookSeq,
                 createLoanTable,
                 createLoanSeq
             };
@@ -112,7 +110,6 @@ namespace DatabaseGateway
 
             foreach (OracleCommand c in commandSequence)
             {
-                //Console.WriteLine(c.CommandText);
                 try
                 {
                     c.Connection = conn;
@@ -120,7 +117,11 @@ namespace DatabaseGateway
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("ERROR: SQL command failed\n" + e.StackTrace, e);
+                    // Ignore errors from dropping non-existent tables/sequences
+                    if (!c.CommandText.StartsWith("DROP"))
+                    {
+                        throw new Exception("ERROR: SQL command failed\n" + e.Message, e);
+                    }
                 }
             }
 

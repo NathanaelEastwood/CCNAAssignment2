@@ -20,7 +20,27 @@ namespace CCNAssignment2;
 public partial class MainWindow : Window
 {
     private readonly CommandFactory commandFactory;
-    private readonly DatabaseLoginWindow.DatabaseCredentials credentials;
+    private readonly DatabaseLoginWindow.DatabaseCredentials? credentials;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+        commandFactory = new CommandFactory();
+        
+        // Show login window when created through XAML
+        var loginWindow = new DatabaseLoginWindow();
+        if (loginWindow.ShowDialog() == true)
+        {
+            credentials = loginWindow.Credentials;
+            DatabaseCredentialsManager.SetCredentials(credentials);
+            InitializeDatabase();
+            SetupButtonHandlers();
+        }
+        else
+        {
+            Application.Current.Shutdown();
+        }
+    }
 
     public MainWindow(DatabaseLoginWindow.DatabaseCredentials credentials)
     {

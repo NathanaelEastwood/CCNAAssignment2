@@ -7,19 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Added missing unversioned files.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/Controllers_Component/InitialiseDatabaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/Controllers_Component/InitialiseDatabaseController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/Oracle_DatabaseGateway/DatabaseConnectionPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/Oracle_DatabaseGateway/DatabaseConnectionPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/App.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2/Oracle_DatabaseGateway/DatabaseInitialiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/Oracle_DatabaseGateway/DatabaseInitialiser.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +37,8 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/App.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/App.xaml.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -52,7 +53,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Debug",
+    ".NET Project.CCNAssignment2.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -64,6 +65,9 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
+    ],
     "rider.external.source.directories": [
       "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
       "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
@@ -101,7 +105,7 @@
       <updated>1741173384856</updated>
       <workItem from="1741173386222" duration="581000" />
       <workItem from="1741174407613" duration="621000" />
-      <workItem from="1741175134318" duration="928000" />
+      <workItem from="1741175134318" duration="1884000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -119,7 +123,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741173792145</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added database login screen.">
+      <option name="closed" value="true" />
+      <created>1741176293777</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741176293778</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added missing unversioned files.">
+      <option name="closed" value="true" />
+      <created>1741176384983</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741176384983</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,23 +151,25 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Full restructure." />
     <MESSAGE value="Added previously ignored files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added previously ignored files." />
+    <MESSAGE value="Added database login screen." />
+    <MESSAGE value="Added missing unversioned files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing unversioned files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs</url>
-          <line>38</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2\MainWindow.xaml.cs" containingFunctionPresentation="Method 'InitializeDatabase'">
+          <url>file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs</url>
+          <line>14</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2\CommandLineUI_Component\Commands\InitialiseDatabaseCommand.cs" containingFunctionPresentation="Method 'Execute'">
             <startOffsets>
-              <option value="1037" />
+              <option value="256" />
             </startOffsets>
             <endOffsets>
-              <option value="1116" />
+              <option value="396" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
