@@ -81,7 +81,7 @@ namespace DatabaseGateway
                 "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=STORAPDB.staff.staffs.ac.uk)));enlist=dynamic;" +
                 $"User Id={credentials.Username};Password={credentials.Password};";
 
-            OracleConnection conn = null;
+            OracleConnection conn;
 
             try
             {

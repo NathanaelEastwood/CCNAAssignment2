@@ -34,7 +34,7 @@ public partial class MainWindow : Window
             credentials = loginWindow.Credentials;
             DatabaseCredentialsManager.SetCredentials(credentials);
             InitializeDatabase();
-            SetupButtonHandlers();
+            this.Loaded += MainWindow_Loaded;
         }
         else
         {
@@ -49,6 +49,11 @@ public partial class MainWindow : Window
         DatabaseCredentialsManager.SetCredentials(credentials);
         commandFactory = new CommandFactory();
         InitializeDatabase();
+        this.Loaded += MainWindow_Loaded;
+    }
+
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
         SetupButtonHandlers();
     }
 
@@ -68,12 +73,24 @@ public partial class MainWindow : Window
 
     private void SetupButtonHandlers()
     {
-        // Find all buttons in the window
-        var buttons = FindVisualChildren<Button>(this);
-        foreach (var button in buttons)
-        {
-            button.Click += Button_Click;
-        }
+        // Get buttons by their names from XAML
+        if (this.FindName("BorrowBookButton") is Button borrowButton)
+            borrowButton.Click += Button_Click;
+        
+        if (this.FindName("ReturnBookButton") is Button returnButton)
+            returnButton.Click += Button_Click;
+        
+        if (this.FindName("RenewLoanButton") is Button renewButton)
+            renewButton.Click += Button_Click;
+        
+        if (this.FindName("ViewAllBooksButton") is Button viewBooksButton)
+            viewBooksButton.Click += Button_Click;
+        
+        if (this.FindName("ViewAllMembersButton") is Button viewMembersButton)
+            viewMembersButton.Click += Button_Click;
+        
+        if (this.FindName("ViewCurrentLoansButton") is Button viewLoansButton)
+            viewLoansButton.Click += Button_Click;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,7 +102,6 @@ public partial class MainWindow : Window
                 int useCase = GetUseCaseFromButtonContent(button.Content.ToString());
                 var command = commandFactory.CreateCommand(useCase);
                 command.Execute();
-                // Update results area with success message
                 ResultsTextBlock.Text = $"Successfully executed: {button.Content}";
             }
             catch (System.Exception ex)

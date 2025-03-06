@@ -27,18 +27,18 @@
             <!-- Loan Operations -->
             <GroupBox Grid.Column="0" Header="Loan Operations" Margin="10">
                 <StackPanel Margin="10">
-                    <Button Content="Borrow Book" Margin="0,5" Padding="5"/>
-                    <Button Content="Return Book" Margin="0,5" Padding="5"/>
-                    <Button Content="Renew Loan" Margin="0,5" Padding="5"/>
+                    <Button x:Name="BorrowBookButton" Content="Borrow Book" Margin="0,5" Padding="5"/>
+                    <Button x:Name="ReturnBookButton" Content="Return Book" Margin="0,5" Padding="5"/>
+                    <Button x:Name="RenewLoanButton" Content="Renew Loan" Margin="0,5" Padding="5"/>
                 </StackPanel>
             </GroupBox>
 
             <!-- View Operations -->
             <GroupBox Grid.Column="1" Header="View Operations" Margin="10">
                 <StackPanel Margin="10">
-                    <Button Content="View All Books" Margin="0,5" Padding="5"/>
-                    <Button Content="View All Members" Margin="0,5" Padding="5"/>
-                    <Button Content="View Current Loans" Margin="0,5" Padding="5"/>
+                    <Button x:Name="ViewAllBooksButton" Content="View All Books" Margin="0,5" Padding="5"/>
+                    <Button x:Name="ViewAllMembersButton" Content="View All Members" Margin="0,5" Padding="5"/>
+                    <Button x:Name="ViewCurrentLoansButton" Content="View Current Loans" Margin="0,5" Padding="5"/>
                 </StackPanel>
             </GroupBox>
 
