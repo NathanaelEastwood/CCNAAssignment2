@@ -1,5 +1,7 @@
-﻿using Controllers;
+﻿using CCNAssignment2.WPFPresenters;
+using Controllers;
 using CommandLineUI.Presenters;
+using UseCase;
 
 namespace CommandLineUI.Commands
 {
@@ -10,7 +12,7 @@ namespace CommandLineUI.Commands
         {
         }
 
-        public void Execute()
+        public UiViewData Execute()
         {
             ReturnBookController controller = 
                 new ReturnBookController(
@@ -18,10 +20,10 @@ namespace CommandLineUI.Commands
                     ConsoleReader.ReadInt("Book ID"),
                     new MessagePresenter());
 
-            CommandLineViewData data =
-                (CommandLineViewData)controller.Execute();
+            UiViewData data =
+                controller.Execute();
 
-            ConsoleWriter.WriteStrings(data.ViewData);
+            return data;
         }
     }
 }

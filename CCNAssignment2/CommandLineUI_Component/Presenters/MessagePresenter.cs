@@ -1,5 +1,6 @@
 ﻿using DTOs;
 using System.Collections.Generic;
+using CCNAssignment2.WPFPresenters;
 using UseCase;
 
 namespace CommandLineUI.Presenters
@@ -7,13 +8,13 @@ namespace CommandLineUI.Presenters
     class MessagePresenter : AbstractPresenter
     {
 
-        public override IViewData ViewData 
+        public override UiViewData ViewData 
         { 
             get
             {
                 List<string> lines = new List<string>(1);
                 lines.Add("\n" + ((MessageDTO)DataToPresent).Message);
-                return new CommandLineViewData(lines);
+                return new UiViewData([new MessageDTO("Choice not recognised")]);
             }
         }
     }

@@ -1,7 +1,10 @@
-﻿namespace CommandLineUI.Commands
+﻿using CCNAssignment2.WPFPresenters;
+using UseCase;
+
+namespace CommandLineUI.Commands
 {
     interface Command
     {
-        void Execute();
+        UiViewData Execute();
     }
 }

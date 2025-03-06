@@ -1,5 +1,6 @@
 ﻿using DTOs;
 using System.Collections.Generic;
+using CCNAssignment2.WPFPresenters;
 using UseCase;
 
 namespace CommandLineUI.Presenters
@@ -7,7 +8,7 @@ namespace CommandLineUI.Presenters
     class AllMembersPresenter : AbstractPresenter
     {
 
-        public override IViewData ViewData
+        public override UiViewData ViewData
         {
             get
             {
@@ -18,7 +19,7 @@ namespace CommandLineUI.Presenters
 
                 members.ForEach(m => lines.Add(DisplayMember(m)));
 
-                return new CommandLineViewData(lines);
+                return new UiViewData(members.Cast<IDto>().ToList());
             }
         }
 

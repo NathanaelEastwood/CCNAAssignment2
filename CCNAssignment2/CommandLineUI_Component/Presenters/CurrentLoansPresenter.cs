@@ -1,6 +1,7 @@
 ﻿using DTOs;
 using CommandLineUI.Presenters.Visitor;
 using System.Collections.Generic;
+using CCNAssignment2.WPFPresenters;
 using UseCase;
 
 namespace CommandLineUI.Presenters
@@ -8,7 +9,7 @@ namespace CommandLineUI.Presenters
     class CurrentLoansPresenter : AbstractPresenter
     {
 
-        public override IViewData ViewData
+        public override UiViewData ViewData
         {
             get
             {
@@ -30,7 +31,7 @@ namespace CommandLineUI.Presenters
                 lines.AddRange(printer.Lines);
                 lines.Add($"\nCurrently, {counter.NumberOfMembersWithLoans} members have loans");
 
-                return new CommandLineViewData(lines);
+                return new UiViewData(loans.Cast<IDto>().ToList());
             }
         }
 

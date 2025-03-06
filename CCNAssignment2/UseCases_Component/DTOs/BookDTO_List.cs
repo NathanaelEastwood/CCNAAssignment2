@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DTOs
+﻿namespace DTOs
 {
     [Serializable]
     public class BookDTO_List : IDto

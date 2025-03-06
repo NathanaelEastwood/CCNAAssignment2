@@ -1,4 +1,5 @@
-﻿using DTOs;
+﻿using CCNAssignment2.WPFPresenters;
+using DTOs;
 
 namespace UseCase
 {
@@ -12,7 +13,7 @@ namespace UseCase
             this.presenter = presenter;
         }
 
-        public IViewData Execute()
+        public UiViewData Execute()
         {
             presenter.DataToPresent = ExecuteUseCase();
             return presenter.ViewData;

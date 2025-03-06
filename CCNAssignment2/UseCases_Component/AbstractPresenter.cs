@@ -1,4 +1,5 @@
-﻿using DTOs;
+﻿using CCNAssignment2.WPFPresenters;
+using DTOs;
 
 namespace UseCase
 {
@@ -7,6 +8,6 @@ namespace UseCase
 
         public IDto DataToPresent { get; set; }
 
-        public abstract IViewData ViewData { get; }
+        public abstract UiViewData ViewData { get; }
     }
 }

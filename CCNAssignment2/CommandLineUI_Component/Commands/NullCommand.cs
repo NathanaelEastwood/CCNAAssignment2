@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CCNAssignment2.WPFPresenters;
+using CommandLineUI.Presenters;
+using DTOs;
+using UseCase;
 
 namespace CommandLineUI.Commands
 {
@@ -9,11 +12,9 @@ namespace CommandLineUI.Commands
         {
         }
 
-        public void Execute()
+        public UiViewData Execute()
         {
-            ConsoleWriter.WriteStrings(
-                new List<string>()
-                    {"Menu choice not recognised"});
+            return new UiViewData([new MessageDTO("Choice not recognised")]);
         }
     }
 }

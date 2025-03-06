@@ -1,5 +1,7 @@
-﻿using Controllers;
+﻿using CCNAssignment2.WPFPresenters;
+using Controllers;
 using CommandLineUI.Presenters;
+using UseCase;
 
 namespace CommandLineUI.Commands
 {
@@ -10,16 +12,16 @@ namespace CommandLineUI.Commands
         {
         }
 
-        public void Execute()
+        public UiViewData Execute()
         {
             InitialiseDatabaseController controller =
                 new InitialiseDatabaseController(
                         new MessagePresenter());
 
-            CommandLineViewData data =
-                (CommandLineViewData)controller.Execute();
+            UiViewData data =
+                controller.Execute();
 
-            ConsoleWriter.WriteStrings(data.ViewData);
+            return data;
         }
     }
 }

@@ -21,7 +21,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Loan Operations -->
@@ -45,8 +45,24 @@
             <!-- Results Area -->
             <GroupBox Grid.Column="2" Header="Results" Margin="10">
                 <ScrollViewer Margin="10">
-                    <TextBlock x:Name="ResultsTextBlock" 
-                             TextWrapping="Wrap"/>
+                    <StackPanel>
+                        <TextBlock x:Name="ResultsTitle"
+                                 FontSize="16"
+                                 FontWeight="Bold"
+                                 Margin="0,0,0,10"/>
+                        <Grid x:Name="ResultsGrid" Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <TextBlock x:Name="ResultsTextBlock" 
+                                 TextWrapping="Wrap"
+                                 Visibility="Visible"/>
+                    </StackPanel>
                 </ScrollViewer>
             </GroupBox>
         </Grid>

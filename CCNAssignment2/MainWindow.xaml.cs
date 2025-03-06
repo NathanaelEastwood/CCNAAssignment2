@@ -1,16 +1,13 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CCNAssignment2.WPFPresenters;
 using CommandLineUI;
 using CommandLineUI.Commands;
 using DatabaseGateway;
+using DTOs;
+using UseCase;
 
 namespace CCNAssignment2;
 
@@ -64,7 +61,7 @@ public partial class MainWindow : Window
             var command = commandFactory.CreateCommand(RequestUseCase.INITIALISE_DATABASE);
             command.Execute();
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             MessageBox.Show($"Error initializing database: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Application.Current.Shutdown();
@@ -101,14 +98,86 @@ public partial class MainWindow : Window
             {
                 int useCase = GetUseCaseFromButtonContent(button.Content.ToString());
                 var command = commandFactory.CreateCommand(useCase);
-                command.Execute();
-                ResultsTextBlock.Text = $"Successfully executed: {button.Content}";
+                UiViewData returnedData = command.Execute();
+                DisplayTableFromDTO(returnedData.ViewData, returnedData.ViewData.GetType().Name.Replace("_List", ""));
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 ResultsTextBlock.Text = $"Error: {ex.Message}";
             }
         }
+    }
+
+    private void DisplayTableFromDTO(List<IDto> items, string title)
+    {
+        if (items.Count == 0)
+        {
+            ResultsTextBlock.Text = $"No {title} available";
+            ResultsGrid.Visibility = Visibility.Collapsed;
+            ResultsTextBlock.Visibility = Visibility.Visible;
+            return;
+        }
+
+        ResultsGrid.Children.Clear();
+        ResultsGrid.RowDefinitions.Clear();
+        ResultsGrid.ColumnDefinitions.Clear();
+        
+        // Set the title
+        ResultsTitle.Text = title;
+
+        // Get properties of the first item
+        var properties = items[0].GetType().GetProperties();
+        
+        // Add column definitions
+        foreach (var property in properties)
+        {
+            ResultsGrid.ColumnDefinitions.Add(new ColumnDefinition 
+            { 
+                Width = property.PropertyType == typeof(string) ? 
+                    new GridLength(1, GridUnitType.Star) : 
+                    GridLength.Auto 
+            });
+        }
+
+        // Add header row
+        ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        for (int i = 0; i < properties.Length; i++)
+        {
+            var headerText = new TextBlock
+            {
+                Text = properties[i].Name,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(5),
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+            Grid.SetColumn(headerText, i);
+            Grid.SetRow(headerText, 0);
+            ResultsGrid.Children.Add(headerText);
+        }
+
+        // Add data rows
+        for (int rowIndex = 0; rowIndex < items.Count; rowIndex++)
+        {
+            ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            var item = items[rowIndex];
+            
+            for (int colIndex = 0; colIndex < properties.Length; colIndex++)
+            {
+                var cellText = new TextBlock
+                {
+                    Text = properties[colIndex].GetValue(item)?.ToString() ?? "",
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Left
+                };
+                Grid.SetColumn(cellText, colIndex);
+                Grid.SetRow(cellText, rowIndex + 1); // +1 because row 0 is the header
+                ResultsGrid.Children.Add(cellText);
+            }
+        }
+
+        // Show the grid and hide the text block
+        ResultsGrid.Visibility = Visibility.Visible;
+        ResultsTextBlock.Visibility = Visibility.Collapsed;
     }
 
     private int GetUseCaseFromButtonContent(string content)
@@ -121,23 +190,7 @@ public partial class MainWindow : Window
             "View All Books" => RequestUseCase.VIEW_ALL_BOOKS,
             "View All Members" => RequestUseCase.VIEW_ALL_MEMBERS,
             "View Current Loans" => RequestUseCase.VIEW_CURRENT_LOANS,
-            _ => throw new System.ArgumentException($"Unknown operation: {content}")
+            _ => throw new ArgumentException($"Unknown operation: {content}")
         };
-    }
-
-    // Helper method to find all controls of a specific type
-    private System.Collections.Generic.IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-    {
-        if (depObj == null) yield break;
-
-        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-        {
-            var child = VisualTreeHelper.GetChild(depObj, i);
-            if (child != null && child is T t)
-                yield return t;
-
-            foreach (T childOfChild in FindVisualChildren<T>(child))
-                yield return childOfChild;
-        }
     }
 }

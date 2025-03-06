@@ -1,5 +1,6 @@
 ﻿using DTOs;
 using System.Collections.Generic;
+using CCNAssignment2.WPFPresenters;
 using UseCase;
 
 namespace CommandLineUI.Presenters
@@ -7,7 +8,7 @@ namespace CommandLineUI.Presenters
     class AllBooksPresenter : AbstractPresenter
     {
 
-        public override IViewData ViewData
+        public override UiViewData ViewData
         {
             get
             {
@@ -18,7 +19,7 @@ namespace CommandLineUI.Presenters
 
                 books.ForEach(b => lines.Add(DisplayBook(b)));
 
-                return new CommandLineViewData(lines);
+                return new UiViewData(books.Cast<IDto>().ToList());
             }
         }
 
