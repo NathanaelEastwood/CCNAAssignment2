@@ -1,4 +1,6 @@
-﻿namespace CommandLineUI.Commands
+﻿using CCNAssignment2.CommandLineUI_Component.Commands;
+
+namespace CommandLineUI.Commands
 {
     class CommandFactory
     {

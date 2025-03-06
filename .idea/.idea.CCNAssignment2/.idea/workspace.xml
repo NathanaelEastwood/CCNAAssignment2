@@ -7,11 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Moved Books, Members and Loans into their own UI elements.">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Added borrow book dialogue.">
       <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +37,8 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
@@ -65,7 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Debug",
+    ".NET Project.CCNAssignment2.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -120,7 +120,7 @@
       <workItem from="1741175134318" duration="2029000" />
       <workItem from="1741245737067" duration="649000" />
       <workItem from="1741246732264" duration="588000" />
-      <workItem from="1741249409575" duration="7032000" />
+      <workItem from="1741249409575" duration="7585000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -178,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741254876110</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added borrow book dialogue.">
+      <option name="closed" value="true" />
+      <created>1741257312577</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741257312577</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,25 +203,7 @@
     <MESSAGE value="Fixed an issue where MainWindow didn't have a constructor." />
     <MESSAGE value="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic." />
     <MESSAGE value="Moved Books, Members and Loans into their own UI elements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved Books, Members and Loans into their own UI elements." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs</url>
-          <line>21</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2\CommandLineUI_Component\Commands\BorrowBookCommand.cs" containingFunctionPresentation="Method 'Execute'">
-            <startOffsets>
-              <option value="478" />
-            </startOffsets>
-            <endOffsets>
-              <option value="657" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added borrow book dialogue." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added borrow book dialogue." />
   </component>
 </project>

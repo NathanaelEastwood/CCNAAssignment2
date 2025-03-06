@@ -1,8 +1,9 @@
 ﻿using CCNAssignment2.WPFPresenters;
-using Controllers;
+using CommandLineUI.Commands;
 using CommandLineUI.Presenters;
+using Controllers;
 
-namespace CommandLineUI.Commands
+namespace CCNAssignment2.CommandLineUI_Component.Commands
 {
     class BorrowBookCommand : Command
     {

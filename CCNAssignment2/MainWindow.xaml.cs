@@ -38,16 +38,6 @@ public partial class MainWindow : Window
         }
     }
 
-    public MainWindow(DatabaseLoginWindow.DatabaseCredentials credentials)
-    {
-        InitializeComponent();
-        this.credentials = credentials;
-        DatabaseCredentialsManager.SetCredentials(credentials);
-        commandFactory = new CommandFactory();
-        InitializeDatabase();
-        this.Loaded += MainWindow_Loaded;
-    }
-
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         SetupButtonHandlers();
@@ -95,39 +85,42 @@ public partial class MainWindow : Window
 
     private void SetupButtonHandlers()
     {
-        // Get buttons by their names from XAML
-        if (this.FindName("BorrowBookButton") is Button borrowButton)
-            borrowButton.Click += BorrowBookButton_Click;
-        
-        if (this.FindName("ReturnBookButton") is Button returnButton)
+        if (FindName("ReturnBookButton") is Button returnButton)
             returnButton.Click += Button_Click;
         
-        if (this.FindName("RenewLoanButton") is Button renewButton)
+        if (FindName("RenewLoanButton") is Button renewButton)
             renewButton.Click += Button_Click;
         
-        if (this.FindName("ViewAllBooksButton") is Button viewBooksButton)
+        if (FindName("ViewAllBooksButton") is Button viewBooksButton)
             viewBooksButton.Click += Button_Click;
         
-        if (this.FindName("ViewAllMembersButton") is Button viewMembersButton)
+        if (FindName("ViewAllMembersButton") is Button viewMembersButton)
             viewMembersButton.Click += Button_Click;
         
-        if (this.FindName("ViewCurrentLoansButton") is Button viewLoansButton)
+        if (FindName("ViewCurrentLoansButton") is Button viewLoansButton)
             viewLoansButton.Click += Button_Click;
     }
 
     private void BooksGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (BooksGrid.SelectedItem is BookDTO book)
-        {
-            selectedBook = book;
-        }
+        selectedBook = BooksGrid.SelectedItem as BookDTO;
+        UpdateBorrowButtonState();
     }
 
     private void MembersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (MembersGrid.SelectedItem is MemberDTO member)
+        selectedMember = MembersGrid.SelectedItem as MemberDTO;
+        UpdateBorrowButtonState();
+    }
+
+    private void UpdateBorrowButtonState()
+    {
+        if (BorrowBookButton != null)
         {
-            selectedMember = member;
+            bool canBorrow = selectedBook != null && 
+                           selectedMember != null && 
+                           selectedBook.State == "Available";
+            BorrowBookButton.IsEnabled = canBorrow;
         }
     }
 
