@@ -4,8 +4,8 @@ namespace CommandLineUI.Commands
 {
     class CommandFactory
     {
-        private int memberId;
-        private int bookId;
+        private int _memberId;
+        private int _bookId;
 
         public CommandFactory()
         {
@@ -13,8 +13,8 @@ namespace CommandLineUI.Commands
 
         public void SetBorrowParameters(int memberId, int bookId)
         {
-            this.memberId = memberId;
-            this.bookId = bookId;
+            _memberId = memberId;
+            _bookId = bookId;
         }
 
         public Command CreateCommand(int menuChoice)
@@ -22,12 +22,13 @@ namespace CommandLineUI.Commands
             switch (menuChoice)
             {
                 case RequestUseCase.BORROW_BOOK:
-                    return new BorrowBookCommand(memberId, bookId);
+                    return new BorrowBookCommand(_memberId, _bookId);
+                
                 case RequestUseCase.INITIALISE_DATABASE:
                     return new InitialiseDatabaseCommand();
 
                 case RequestUseCase.RENEW_LOAN:
-                    return new RenewLoanCommand();
+                    return new RenewLoanCommand(_memberId, _bookId);
 
                 case RequestUseCase.RETURN_BOOK:
                     return new ReturnBookCommand();

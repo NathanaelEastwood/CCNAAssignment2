@@ -17,6 +17,7 @@ public partial class MainWindow : Window
     private readonly DatabaseLoginWindow.DatabaseCredentials? credentials;
     private BookDTO? selectedBook;
     private MemberDTO? selectedMember;
+    private LoanDTO? selectedLoan;
 
     public MainWindow()
     {
@@ -88,9 +89,6 @@ public partial class MainWindow : Window
         if (FindName("ReturnBookButton") is Button returnButton)
             returnButton.Click += Button_Click;
         
-        if (FindName("RenewLoanButton") is Button renewButton)
-            renewButton.Click += Button_Click;
-        
         if (FindName("ViewAllBooksButton") is Button viewBooksButton)
             viewBooksButton.Click += Button_Click;
         
@@ -113,6 +111,12 @@ public partial class MainWindow : Window
         UpdateBorrowButtonState();
     }
 
+    private void LoansGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        selectedLoan = LoansGrid.SelectedItem as LoanDTO;
+        UpdateRenewButtonState();
+    }
+
     private void UpdateBorrowButtonState()
     {
         if (BorrowBookButton != null)
@@ -121,6 +125,15 @@ public partial class MainWindow : Window
                            selectedMember != null && 
                            selectedBook.State == "Available";
             BorrowBookButton.IsEnabled = canBorrow;
+        }
+    }
+
+    private void UpdateRenewButtonState()
+    {
+        if (RenewLoanButton != null)
+        {
+            bool canRenew = selectedLoan != null;
+            RenewLoanButton.IsEnabled = canRenew;
         }
     }
 
@@ -133,6 +146,25 @@ public partial class MainWindow : Window
             {
                 commandFactory.SetBorrowParameters(selectedMember.ID, selectedBook.Id);
                 var command = commandFactory.CreateCommand(RequestUseCase.BORROW_BOOK);
+                var returnedData = command.Execute();
+                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                LoadInitialData(); // Refresh all lists
+            }
+            catch (Exception ex)
+            {
+                ResultsTextBlock.Text = $"Error: {ex.Message}";
+            }
+        }
+    }
+
+    private void RenewLoanButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (selectedLoan != null)
+        {
+            try
+            {
+                commandFactory.SetBorrowParameters(selectedLoan.Member.ID, selectedLoan.Book.Id);
+                var command = commandFactory.CreateCommand(RequestUseCase.RENEW_LOAN);
                 var returnedData = command.Execute();
                 ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
                 LoadInitialData(); // Refresh all lists

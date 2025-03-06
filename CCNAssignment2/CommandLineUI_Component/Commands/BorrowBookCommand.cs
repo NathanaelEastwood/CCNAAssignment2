@@ -8,21 +8,21 @@ namespace CCNAssignment2.CommandLineUI_Component.Commands
     class BorrowBookCommand : Command
     {
 
-        private readonly int memberId;
-        private readonly int bookId;
+        private readonly int _memberId;
+        private readonly int _bookId;
         
         public BorrowBookCommand(int memberId, int bookId)
         {
-            this.memberId = memberId;
-            this.bookId = bookId;
+            _memberId = memberId;
+            _bookId = bookId;
         }
 
         public UiViewData Execute()
         {
             BorrowBookController controller = 
                 new BorrowBookController(
-                    memberId,
-                    bookId,
+                    _memberId,
+                    _bookId,
                     new MessagePresenter());
 
             UiViewData data = 

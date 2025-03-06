@@ -1,23 +1,27 @@
 ﻿using CCNAssignment2.WPFPresenters;
-using Controllers;
+using CommandLineUI.Commands;
 using CommandLineUI.Presenters;
-using UseCase;
+using Controllers;
 
-namespace CommandLineUI.Commands
+namespace CCNAssignment2.CommandLineUI_Component.Commands
 {
     class RenewLoanCommand : Command
     {
 
-        public RenewLoanCommand()
+        private readonly int MemberId;
+        private readonly int BookId;
+        public RenewLoanCommand(int memberId, int bookId)
         {
+            MemberId = memberId;
+            BookId = bookId;
         }
 
         public UiViewData Execute()
         {
             RenewLoanController controller = 
                 new RenewLoanController(
-                    ConsoleReader.ReadInt("\nMember ID"),
-                    ConsoleReader.ReadInt("Book ID"),
+                    MemberId,
+                    BookId,
                     new MessagePresenter());
 
             UiViewData data =
@@ -27,3 +31,4 @@ namespace CommandLineUI.Commands
         }
     }
 }
+

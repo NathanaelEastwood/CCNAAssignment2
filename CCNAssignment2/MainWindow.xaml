@@ -46,11 +46,11 @@
                                  SelectionMode="Single"
                                  SelectionChanged="BooksGrid_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
                                 <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="*"/>
                                 <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="Auto"/>
                                 <DataGridTextColumn Header="Status" Binding="{Binding State}" Width="Auto"/>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -61,7 +61,7 @@
                     <StackPanel Margin="10">
                         <Button x:Name="BorrowBookButton" Content="Borrow Book" Margin="0,5" Padding="5" Click="BorrowBookButton_Click" IsEnabled="False"/>
                         <Button x:Name="ReturnBookButton" Content="Return Book" Margin="0,5" Padding="5"/>
-                        <Button x:Name="RenewLoanButton" Content="Renew Loan" Margin="0,5" Padding="5"/>
+                        <Button x:Name="RenewLoanButton" Content="Renew Loan" Margin="0,5" Padding="5" Click="RenewLoanButton_Click" IsEnabled="False"/>
                     </StackPanel>
                 </GroupBox>
             </Grid>
@@ -121,13 +121,15 @@
                         <DataGrid x:Name="LoansGrid" Grid.Row="1" Margin="5"
                                  AutoGenerateColumns="False"
                                  IsReadOnly="True"
-                                 SelectionMode="Single">
+                                 SelectionMode="Single"
+                                 SelectionChanged="LoansGrid_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
-                                <DataGridTextColumn Header="Book ID" Binding="{Binding Book.Id}" Width="Auto"/>
-                                <DataGridTextColumn Header="Member ID" Binding="{Binding Member.ID}" Width="Auto"/>
+                                <DataGridTextColumn Header="Book Title" Binding="{Binding Book.Title}" Width="*"/>
+                                <DataGridTextColumn Header="Member Name" Binding="{Binding Member.Name}" Width="*"/>
                                 <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}" Width="Auto"/>
+                                <DataGridTextColumn Header="Renewals" Binding="{Binding NumberOfRenewals}" Width="Auto"/>
                                 <DataGridTextColumn Header="Status" Binding="{Binding Book.State}" Width="Auto"/>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
