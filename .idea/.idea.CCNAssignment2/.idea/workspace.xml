@@ -7,28 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2/WPFPresenters/UIViewData.cs" afterDir="false" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/NullCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/NullCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ReturnBookCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ReturnBookCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewAllBooksCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewAllBooksCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewAllMembersCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewAllMembersCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewCurrentLoansCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewCurrentLoansCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/AllBooksPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/AllBooksPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/AllMembersPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/AllMembersPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/CurrentLoansPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/CurrentLoansPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/MessagePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Presenters/MessagePresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/AbstractController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/AbstractController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/AbstractPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/AbstractPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/DTOs/BookDTO_List.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/UseCases_Component/DTOs/BookDTO_List.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +37,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -131,7 +114,7 @@
       <workItem from="1741175134318" duration="2029000" />
       <workItem from="1741245737067" duration="649000" />
       <workItem from="1741246732264" duration="588000" />
-      <workItem from="1741249409575" duration="3684000" />
+      <workItem from="1741249409575" duration="5021000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -173,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741177176497</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic.">
+      <option name="closed" value="true" />
+      <created>1741253300298</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741253300298</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +179,7 @@
     <MESSAGE value="Added database login screen." />
     <MESSAGE value="Added missing unversioned files." />
     <MESSAGE value="Fixed an issue where MainWindow didn't have a constructor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where MainWindow didn't have a constructor." />
+    <MESSAGE value="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic." />
   </component>
 </project>

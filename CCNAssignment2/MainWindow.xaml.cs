@@ -1,13 +1,10 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using CCNAssignment2.WPFPresenters;
 using CommandLineUI;
 using CommandLineUI.Commands;
 using DatabaseGateway;
 using DTOs;
-using UseCase;
 
 namespace CCNAssignment2;
 
@@ -52,6 +49,32 @@ public partial class MainWindow : Window
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         SetupButtonHandlers();
+        LoadInitialData();
+    }
+
+    private void LoadInitialData()
+    {
+        try
+        {
+            // Load books
+            var booksCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_BOOKS);
+            var booksData = booksCommand.Execute();
+            DisplayTableFromDTO(booksData.ViewData, "Books", BooksGrid, BooksTitle);
+
+            // Load members
+            var membersCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
+            var membersData = membersCommand.Execute();
+            DisplayTableFromDTO(membersData.ViewData, "Members", MembersGrid, MembersTitle);
+
+            // Load loans
+            var loansCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
+            var loansData = loansCommand.Execute();
+            DisplayTableFromDTO(loansData.ViewData, "Current Loans", LoansGrid, LoansTitle);
+        }
+        catch (Exception ex)
+        {
+            ResultsTextBlock.Text = $"Error loading initial data: {ex.Message}";
+        }
     }
 
     private void InitializeDatabase()
@@ -99,7 +122,34 @@ public partial class MainWindow : Window
                 int useCase = GetUseCaseFromButtonContent(button.Content.ToString());
                 var command = commandFactory.CreateCommand(useCase);
                 UiViewData returnedData = command.Execute();
-                DisplayTableFromDTO(returnedData.ViewData, returnedData.ViewData.GetType().Name.Replace("_List", ""));
+
+                // Handle different types of operations
+                switch (useCase)
+                {
+                    case RequestUseCase.VIEW_ALL_BOOKS:
+                        DisplayTableFromDTO(returnedData.ViewData, "Books", BooksGrid, BooksTitle);
+                        ResultsTextBlock.Text = "Books list refreshed";
+                        break;
+
+                    case RequestUseCase.VIEW_ALL_MEMBERS:
+                        DisplayTableFromDTO(returnedData.ViewData, "Members", MembersGrid, MembersTitle);
+                        ResultsTextBlock.Text = "Members list refreshed";
+                        break;
+
+                    case RequestUseCase.VIEW_CURRENT_LOANS:
+                        DisplayTableFromDTO(returnedData.ViewData, "Current Loans", LoansGrid, LoansTitle);
+                        ResultsTextBlock.Text = "Loans list refreshed";
+                        break;
+
+                    case RequestUseCase.BORROW_BOOK:
+                    case RequestUseCase.RETURN_BOOK:
+                    case RequestUseCase.RENEW_LOAN:
+                        // Refresh all lists after loan operations
+                        LoadInitialData();
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -108,22 +158,20 @@ public partial class MainWindow : Window
         }
     }
 
-    private void DisplayTableFromDTO(List<IDto> items, string title)
+    private void DisplayTableFromDTO(List<IDto> items, string title, Grid targetGrid, TextBlock titleBlock)
     {
         if (items.Count == 0)
         {
-            ResultsTextBlock.Text = $"No {title} available";
-            ResultsGrid.Visibility = Visibility.Collapsed;
-            ResultsTextBlock.Visibility = Visibility.Visible;
+            titleBlock.Text = $"{title} - No items available";
             return;
         }
 
-        ResultsGrid.Children.Clear();
-        ResultsGrid.RowDefinitions.Clear();
-        ResultsGrid.ColumnDefinitions.Clear();
+        targetGrid.Children.Clear();
+        targetGrid.RowDefinitions.Clear();
+        targetGrid.ColumnDefinitions.Clear();
         
         // Set the title
-        ResultsTitle.Text = title;
+        titleBlock.Text = title;
 
         // Get properties of the first item
         var properties = items[0].GetType().GetProperties();
@@ -131,7 +179,7 @@ public partial class MainWindow : Window
         // Add column definitions
         foreach (var property in properties)
         {
-            ResultsGrid.ColumnDefinitions.Add(new ColumnDefinition 
+            targetGrid.ColumnDefinitions.Add(new ColumnDefinition 
             { 
                 Width = property.PropertyType == typeof(string) ? 
                     new GridLength(1, GridUnitType.Star) : 
@@ -140,7 +188,7 @@ public partial class MainWindow : Window
         }
 
         // Add header row
-        ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        targetGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         for (int i = 0; i < properties.Length; i++)
         {
             var headerText = new TextBlock
@@ -152,13 +200,13 @@ public partial class MainWindow : Window
             };
             Grid.SetColumn(headerText, i);
             Grid.SetRow(headerText, 0);
-            ResultsGrid.Children.Add(headerText);
+            targetGrid.Children.Add(headerText);
         }
 
         // Add data rows
         for (int rowIndex = 0; rowIndex < items.Count; rowIndex++)
         {
-            ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            targetGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             var item = items[rowIndex];
             
             for (int colIndex = 0; colIndex < properties.Length; colIndex++)
@@ -171,13 +219,9 @@ public partial class MainWindow : Window
                 };
                 Grid.SetColumn(cellText, colIndex);
                 Grid.SetRow(cellText, rowIndex + 1); // +1 because row 0 is the header
-                ResultsGrid.Children.Add(cellText);
+                targetGrid.Children.Add(cellText);
             }
         }
-
-        // Show the grid and hide the text block
-        ResultsGrid.Visibility = Visibility.Visible;
-        ResultsTextBlock.Visibility = Visibility.Collapsed;
     }
 
     private int GetUseCaseFromButtonContent(string content)
@@ -187,9 +231,9 @@ public partial class MainWindow : Window
             "Borrow Book" => RequestUseCase.BORROW_BOOK,
             "Return Book" => RequestUseCase.RETURN_BOOK,
             "Renew Loan" => RequestUseCase.RENEW_LOAN,
-            "View All Books" => RequestUseCase.VIEW_ALL_BOOKS,
-            "View All Members" => RequestUseCase.VIEW_ALL_MEMBERS,
-            "View Current Loans" => RequestUseCase.VIEW_CURRENT_LOANS,
+            "Refresh Books" => RequestUseCase.VIEW_ALL_BOOKS,
+            "Refresh Members" => RequestUseCase.VIEW_ALL_MEMBERS,
+            "Refresh Loans" => RequestUseCase.VIEW_CURRENT_LOANS,
             _ => throw new ArgumentException($"Unknown operation: {content}")
         };
     }
