@@ -11,7 +11,7 @@ namespace CommandLineUI.Commands
         {
         }
 
-        public void SetBorrowParameters(int memberId, int bookId)
+        public void SetLoanParameters(int memberId, int bookId)
         {
             _memberId = memberId;
             _bookId = bookId;
@@ -31,7 +31,7 @@ namespace CommandLineUI.Commands
                     return new RenewLoanCommand(_memberId, _bookId);
 
                 case RequestUseCase.RETURN_BOOK:
-                    return new ReturnBookCommand();
+                    return new ReturnBookCommand(_memberId, _bookId);
 
                 case RequestUseCase.VIEW_ALL_BOOKS:
                     return new ViewAllBooksCommand();

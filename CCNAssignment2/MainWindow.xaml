@@ -60,7 +60,7 @@
                 <GroupBox Header="Loan Operations" Grid.Row="1" Margin="0,10,0,0">
                     <StackPanel Margin="10">
                         <Button x:Name="BorrowBookButton" Content="Borrow Book" Margin="0,5" Padding="5" Click="BorrowBookButton_Click" IsEnabled="False"/>
-                        <Button x:Name="ReturnBookButton" Content="Return Book" Margin="0,5" Padding="5"/>
+                        <Button x:Name="ReturnBookButton" Content="Return Book" Margin="0,5" Padding="5" Click="ReturnBookButton_Click" IsEnabled="False"/>
                         <Button x:Name="RenewLoanButton" Content="Renew Loan" Margin="0,5" Padding="5" Click="RenewLoanButton_Click" IsEnabled="False"/>
                     </StackPanel>
                 </GroupBox>

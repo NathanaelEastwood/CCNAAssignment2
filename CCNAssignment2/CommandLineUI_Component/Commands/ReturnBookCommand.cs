@@ -7,17 +7,21 @@ namespace CommandLineUI.Commands
 {
     class ReturnBookCommand : Command
     {
+        private readonly int _memberId;
+        private readonly int _bookId;
 
-        public ReturnBookCommand()
+        public ReturnBookCommand(int memberId, int bookId)
         {
+            _memberId = memberId;
+            _bookId = bookId;
         }
 
         public UiViewData Execute()
         {
             ReturnBookController controller = 
                 new ReturnBookController(
-                    ConsoleReader.ReadInt("\nMember ID"),
-                    ConsoleReader.ReadInt("Book ID"),
+                    _memberId,
+                    _bookId,
                     new MessagePresenter());
 
             UiViewData data =

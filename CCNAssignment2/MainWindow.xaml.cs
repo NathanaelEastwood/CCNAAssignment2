@@ -13,22 +13,21 @@ namespace CCNAssignment2;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private readonly CommandFactory commandFactory;
-    private readonly DatabaseLoginWindow.DatabaseCredentials? credentials;
-    private BookDTO? selectedBook;
-    private MemberDTO? selectedMember;
-    private LoanDTO? selectedLoan;
+    private readonly CommandFactory _commandFactory;
+    private BookDTO? _selectedBook;
+    private MemberDTO? _selectedMember;
+    private LoanDTO? _selectedLoan;
 
     public MainWindow()
     {
         InitializeComponent();
-        commandFactory = new CommandFactory();
+        _commandFactory = new CommandFactory();
         
         // Show login window when created through XAML
         var loginWindow = new DatabaseLoginWindow();
         if (loginWindow.ShowDialog() == true)
         {
-            credentials = loginWindow.Credentials;
+            var credentials = loginWindow.Credentials;
             DatabaseCredentialsManager.SetCredentials(credentials);
             InitializeDatabase();
             this.Loaded += MainWindow_Loaded;
@@ -50,17 +49,17 @@ public partial class MainWindow : Window
         try
         {
             // Load books
-            var booksCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_BOOKS);
+            var booksCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_BOOKS);
             var booksData = booksCommand.Execute();
             BooksGrid.ItemsSource = booksData.ViewData;
 
             // Load members
-            var membersCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
+            var membersCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
             var membersData = membersCommand.Execute();
             MembersGrid.ItemsSource = membersData.ViewData;
 
             // Load loans
-            var loansCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
+            var loansCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
             var loansData = loansCommand.Execute();
             LoansGrid.ItemsSource = loansData.ViewData;
         }
@@ -74,7 +73,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            var command = commandFactory.CreateCommand(RequestUseCase.INITIALISE_DATABASE);
+            var command = _commandFactory.CreateCommand(RequestUseCase.INITIALISE_DATABASE);
             command.Execute();
         }
         catch (Exception ex)
@@ -86,9 +85,6 @@ public partial class MainWindow : Window
 
     private void SetupButtonHandlers()
     {
-        if (FindName("ReturnBookButton") is Button returnButton)
-            returnButton.Click += Button_Click;
-        
         if (FindName("ViewAllBooksButton") is Button viewBooksButton)
             viewBooksButton.Click += Button_Click;
         
@@ -101,29 +97,30 @@ public partial class MainWindow : Window
 
     private void BooksGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        selectedBook = BooksGrid.SelectedItem as BookDTO;
+        _selectedBook = BooksGrid.SelectedItem as BookDTO;
         UpdateBorrowButtonState();
     }
 
     private void MembersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        selectedMember = MembersGrid.SelectedItem as MemberDTO;
+        _selectedMember = MembersGrid.SelectedItem as MemberDTO;
         UpdateBorrowButtonState();
     }
 
     private void LoansGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        selectedLoan = LoansGrid.SelectedItem as LoanDTO;
+        _selectedLoan = LoansGrid.SelectedItem as LoanDTO;
         UpdateRenewButtonState();
+        UpdateReturnButtonState();
     }
 
     private void UpdateBorrowButtonState()
     {
         if (BorrowBookButton != null)
         {
-            bool canBorrow = selectedBook != null && 
-                           selectedMember != null && 
-                           selectedBook.State == "Available";
+            bool canBorrow = _selectedBook != null && 
+                           _selectedMember != null && 
+                           _selectedBook.State == "Available";
             BorrowBookButton.IsEnabled = canBorrow;
         }
     }
@@ -132,20 +129,28 @@ public partial class MainWindow : Window
     {
         if (RenewLoanButton != null)
         {
-            bool canRenew = selectedLoan != null;
+            bool canRenew = _selectedLoan != null;
             RenewLoanButton.IsEnabled = canRenew;
+        }
+    }
+
+    private void UpdateReturnButtonState()
+    {
+        if (ReturnBookButton != null)
+        {
+            ReturnBookButton.IsEnabled = _selectedLoan != null;
         }
     }
 
     private void BorrowBookButton_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new BorrowBookDialog(selectedBook, selectedMember);
-        if (dialog.ShowDialog() == true && selectedBook != null && selectedMember != null)
+        var dialog = new BorrowBookDialog(_selectedBook, _selectedMember);
+        if (dialog.ShowDialog() == true && _selectedBook != null && _selectedMember != null)
         {
             try
             {
-                commandFactory.SetBorrowParameters(selectedMember.ID, selectedBook.Id);
-                var command = commandFactory.CreateCommand(RequestUseCase.BORROW_BOOK);
+                _commandFactory.SetLoanParameters(_selectedMember.ID, _selectedBook.Id);
+                var command = _commandFactory.CreateCommand(RequestUseCase.BORROW_BOOK);
                 var returnedData = command.Execute();
                 ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
                 LoadInitialData(); // Refresh all lists
@@ -159,12 +164,31 @@ public partial class MainWindow : Window
 
     private void RenewLoanButton_Click(object sender, RoutedEventArgs e)
     {
-        if (selectedLoan != null)
+        if (_selectedLoan != null)
         {
             try
             {
-                commandFactory.SetBorrowParameters(selectedLoan.Member.ID, selectedLoan.Book.Id);
-                var command = commandFactory.CreateCommand(RequestUseCase.RENEW_LOAN);
+                _commandFactory.SetLoanParameters(_selectedLoan.Member.ID, _selectedLoan.Book.Id);
+                var command = _commandFactory.CreateCommand(RequestUseCase.RENEW_LOAN);
+                var returnedData = command.Execute();
+                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                LoadInitialData(); // Refresh all lists
+            }
+            catch (Exception ex)
+            {
+                ResultsTextBlock.Text = $"Error: {ex.Message}";
+            }
+        }
+    }
+
+    private void ReturnBookButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedLoan != null)
+        {
+            try
+            {
+                _commandFactory.SetLoanParameters(_selectedLoan.Member.ID, _selectedLoan.Book.Id);
+                var command = _commandFactory.CreateCommand(RequestUseCase.RETURN_BOOK);
                 var returnedData = command.Execute();
                 ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
                 LoadInitialData(); // Refresh all lists
@@ -183,7 +207,7 @@ public partial class MainWindow : Window
             try
             {
                 int useCase = GetUseCaseFromButtonContent(button.Content.ToString());
-                var command = commandFactory.CreateCommand(useCase);
+                var command = _commandFactory.CreateCommand(useCase);
                 UiViewData returnedData = command.Execute();
 
                 // Handle different types of operations
