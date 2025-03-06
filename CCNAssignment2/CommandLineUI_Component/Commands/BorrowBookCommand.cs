@@ -1,23 +1,27 @@
 ﻿using CCNAssignment2.WPFPresenters;
 using Controllers;
 using CommandLineUI.Presenters;
-using UseCase;
 
 namespace CommandLineUI.Commands
 {
     class BorrowBookCommand : Command
     {
 
-        public BorrowBookCommand()
+        private readonly int memberId;
+        private readonly int bookId;
+        
+        public BorrowBookCommand(int memberId, int bookId)
         {
+            this.memberId = memberId;
+            this.bookId = bookId;
         }
 
         public UiViewData Execute()
         {
             BorrowBookController controller = 
                 new BorrowBookController(
-                    ConsoleReader.ReadInt("\nMember ID"),
-                    ConsoleReader.ReadInt("Book ID"),
+                    memberId,
+                    bookId,
                     new MessagePresenter());
 
             UiViewData data = 

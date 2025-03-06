@@ -15,6 +15,8 @@ public partial class MainWindow : Window
 {
     private readonly CommandFactory commandFactory;
     private readonly DatabaseLoginWindow.DatabaseCredentials? credentials;
+    private BookDTO? selectedBook;
+    private MemberDTO? selectedMember;
 
     public MainWindow()
     {
@@ -59,17 +61,17 @@ public partial class MainWindow : Window
             // Load books
             var booksCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_BOOKS);
             var booksData = booksCommand.Execute();
-            DisplayTableFromDTO(booksData.ViewData, "Books", BooksGrid, BooksTitle);
+            BooksGrid.ItemsSource = booksData.ViewData;
 
             // Load members
             var membersCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
             var membersData = membersCommand.Execute();
-            DisplayTableFromDTO(membersData.ViewData, "Members", MembersGrid, MembersTitle);
+            MembersGrid.ItemsSource = membersData.ViewData;
 
             // Load loans
             var loansCommand = commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
             var loansData = loansCommand.Execute();
-            DisplayTableFromDTO(loansData.ViewData, "Current Loans", LoansGrid, LoansTitle);
+            LoansGrid.ItemsSource = loansData.ViewData;
         }
         catch (Exception ex)
         {
@@ -95,7 +97,7 @@ public partial class MainWindow : Window
     {
         // Get buttons by their names from XAML
         if (this.FindName("BorrowBookButton") is Button borrowButton)
-            borrowButton.Click += Button_Click;
+            borrowButton.Click += BorrowBookButton_Click;
         
         if (this.FindName("ReturnBookButton") is Button returnButton)
             returnButton.Click += Button_Click;
@@ -113,6 +115,42 @@ public partial class MainWindow : Window
             viewLoansButton.Click += Button_Click;
     }
 
+    private void BooksGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (BooksGrid.SelectedItem is BookDTO book)
+        {
+            selectedBook = book;
+        }
+    }
+
+    private void MembersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (MembersGrid.SelectedItem is MemberDTO member)
+        {
+            selectedMember = member;
+        }
+    }
+
+    private void BorrowBookButton_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new BorrowBookDialog(selectedBook, selectedMember);
+        if (dialog.ShowDialog() == true && selectedBook != null && selectedMember != null)
+        {
+            try
+            {
+                commandFactory.SetBorrowParameters(selectedMember.ID, selectedBook.Id);
+                var command = commandFactory.CreateCommand(RequestUseCase.BORROW_BOOK);
+                var returnedData = command.Execute();
+                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                LoadInitialData(); // Refresh all lists
+            }
+            catch (Exception ex)
+            {
+                ResultsTextBlock.Text = $"Error: {ex.Message}";
+            }
+        }
+    }
+
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button button)
@@ -127,99 +165,34 @@ public partial class MainWindow : Window
                 switch (useCase)
                 {
                     case RequestUseCase.VIEW_ALL_BOOKS:
-                        DisplayTableFromDTO(returnedData.ViewData, "Books", BooksGrid, BooksTitle);
+                        BooksGrid.ItemsSource = returnedData.ViewData;
                         ResultsTextBlock.Text = "Books list refreshed";
                         break;
 
                     case RequestUseCase.VIEW_ALL_MEMBERS:
-                        DisplayTableFromDTO(returnedData.ViewData, "Members", MembersGrid, MembersTitle);
+                        MembersGrid.ItemsSource = returnedData.ViewData;
                         ResultsTextBlock.Text = "Members list refreshed";
                         break;
 
                     case RequestUseCase.VIEW_CURRENT_LOANS:
-                        DisplayTableFromDTO(returnedData.ViewData, "Current Loans", LoansGrid, LoansTitle);
+                        LoansGrid.ItemsSource = returnedData.ViewData;
                         ResultsTextBlock.Text = "Loans list refreshed";
                         break;
 
-                    case RequestUseCase.BORROW_BOOK:
                     case RequestUseCase.RETURN_BOOK:
                     case RequestUseCase.RENEW_LOAN:
-                        // Refresh all lists after loan operations
-                        LoadInitialData();
+                        ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                        LoadInitialData(); // Refresh all lists
                         break;
+
                     default:
+                        ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
                         break;
                 }
             }
             catch (Exception ex)
             {
                 ResultsTextBlock.Text = $"Error: {ex.Message}";
-            }
-        }
-    }
-
-    private void DisplayTableFromDTO(List<IDto> items, string title, Grid targetGrid, TextBlock titleBlock)
-    {
-        if (items.Count == 0)
-        {
-            titleBlock.Text = $"{title} - No items available";
-            return;
-        }
-
-        targetGrid.Children.Clear();
-        targetGrid.RowDefinitions.Clear();
-        targetGrid.ColumnDefinitions.Clear();
-        
-        // Set the title
-        titleBlock.Text = title;
-
-        // Get properties of the first item
-        var properties = items[0].GetType().GetProperties();
-        
-        // Add column definitions
-        foreach (var property in properties)
-        {
-            targetGrid.ColumnDefinitions.Add(new ColumnDefinition 
-            { 
-                Width = property.PropertyType == typeof(string) ? 
-                    new GridLength(1, GridUnitType.Star) : 
-                    GridLength.Auto 
-            });
-        }
-
-        // Add header row
-        targetGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        for (int i = 0; i < properties.Length; i++)
-        {
-            var headerText = new TextBlock
-            {
-                Text = properties[i].Name,
-                FontWeight = FontWeights.Bold,
-                Margin = new Thickness(5),
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
-            Grid.SetColumn(headerText, i);
-            Grid.SetRow(headerText, 0);
-            targetGrid.Children.Add(headerText);
-        }
-
-        // Add data rows
-        for (int rowIndex = 0; rowIndex < items.Count; rowIndex++)
-        {
-            targetGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            var item = items[rowIndex];
-            
-            for (int colIndex = 0; colIndex < properties.Length; colIndex++)
-            {
-                var cellText = new TextBlock
-                {
-                    Text = properties[colIndex].GetValue(item)?.ToString() ?? "",
-                    Margin = new Thickness(5),
-                    HorizontalAlignment = HorizontalAlignment.Left
-                };
-                Grid.SetColumn(cellText, colIndex);
-                Grid.SetRow(cellText, rowIndex + 1); // +1 because row 0 is the header
-                targetGrid.Children.Add(cellText);
             }
         }
     }

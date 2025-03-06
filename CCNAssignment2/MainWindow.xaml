@@ -40,22 +40,26 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="BooksTitle" FontSize="16" FontWeight="Bold" Margin="5"/>
-                        <Grid x:Name="BooksGrid" Grid.Row="1" Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
+                        <DataGrid x:Name="BooksGrid" Grid.Row="1" Margin="5" 
+                                 AutoGenerateColumns="False"
+                                 IsReadOnly="True"
+                                 SelectionMode="Single"
+                                 SelectionChanged="BooksGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                                <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="*"/>
+                                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="Auto"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding State}" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </GroupBox>
 
                 <!-- Loan Operations -->
                 <GroupBox Header="Loan Operations" Grid.Row="1" Margin="0,10,0,0">
                     <StackPanel Margin="10">
-                        <Button x:Name="BorrowBookButton" Content="Borrow Book" Margin="0,5" Padding="5"/>
+                        <Button x:Name="BorrowBookButton" Content="Borrow Book" Margin="0,5" Padding="5" Click="BorrowBookButton_Click"/>
                         <Button x:Name="ReturnBookButton" Content="Return Book" Margin="0,5" Padding="5"/>
                         <Button x:Name="RenewLoanButton" Content="Renew Loan" Margin="0,5" Padding="5"/>
                     </StackPanel>
@@ -77,12 +81,16 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="MembersTitle" FontSize="16" FontWeight="Bold" Margin="5"/>
-                        <Grid x:Name="MembersGrid" Grid.Row="1" Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
+                        <DataGrid x:Name="MembersGrid" Grid.Row="1" Margin="5"
+                                 AutoGenerateColumns="False"
+                                 IsReadOnly="True"
+                                 SelectionMode="Single"
+                                 SelectionChanged="MembersGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </GroupBox>
 
@@ -110,15 +118,18 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="LoansTitle" FontSize="16" FontWeight="Bold" Margin="5"/>
-                        <Grid x:Name="LoansGrid" Grid.Row="1" Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
+                        <DataGrid x:Name="LoansGrid" Grid.Row="1" Margin="5"
+                                 AutoGenerateColumns="False"
+                                 IsReadOnly="True"
+                                 SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
+                                <DataGridTextColumn Header="Book ID" Binding="{Binding Book.Id}" Width="Auto"/>
+                                <DataGridTextColumn Header="Member ID" Binding="{Binding Member.ID}" Width="Auto"/>
+                                <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}" Width="Auto"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding Book.State}" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </GroupBox>
             </Grid>

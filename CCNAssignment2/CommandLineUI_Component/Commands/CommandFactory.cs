@@ -2,9 +2,17 @@
 {
     class CommandFactory
     {
+        private int memberId;
+        private int bookId;
 
         public CommandFactory()
         {
+        }
+
+        public void SetBorrowParameters(int memberId, int bookId)
+        {
+            this.memberId = memberId;
+            this.bookId = bookId;
         }
 
         public Command CreateCommand(int menuChoice)
@@ -12,8 +20,7 @@
             switch (menuChoice)
             {
                 case RequestUseCase.BORROW_BOOK:
-                    return new BorrowBookCommand();
-
+                    return new BorrowBookCommand(memberId, bookId);
                 case RequestUseCase.INITIALISE_DATABASE:
                     return new InitialiseDatabaseCommand();
 
