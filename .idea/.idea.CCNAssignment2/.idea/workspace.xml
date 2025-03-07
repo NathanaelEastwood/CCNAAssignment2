@@ -7,14 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2/MainWindow.xaml.cs" afterDir="false" />
-    </list>
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,9 +35,11 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/NullCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -54,6 +49,7 @@
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
@@ -71,7 +67,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Debug",
+    ".NET Project.CCNAssignment2.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -126,7 +122,7 @@
       <workItem from="1741175134318" duration="2029000" />
       <workItem from="1741245737067" duration="649000" />
       <workItem from="1741246732264" duration="588000" />
-      <workItem from="1741249409575" duration="10592000" />
+      <workItem from="1741249409575" duration="16669000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -200,7 +196,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741258026934</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Made renew loan work on the same principle as borrow book.">
+      <option name="closed" value="true" />
+      <created>1741261029826</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741261029826</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added return book as a UI method.">
+      <option name="closed" value="true" />
+      <created>1741273772094</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741273772094</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,25 +231,8 @@
     <MESSAGE value="Moved Books, Members and Loans into their own UI elements." />
     <MESSAGE value="Added borrow book dialogue." />
     <MESSAGE value="Adjusted borrow book button to only be selectable when valid." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted borrow book button to only be selectable when valid." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs</url>
-          <line>30</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2\CommandLineUI_Component\Commands\CommandFactory.cs" containingFunctionPresentation="Method 'CreateCommand'">
-            <startOffsets>
-              <option value="818" />
-            </startOffsets>
-            <endOffsets>
-              <option value="866" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Made renew loan work on the same principle as borrow book." />
+    <MESSAGE value="Added return book as a UI method." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added return book as a UI method." />
   </component>
 </project>

@@ -11,7 +11,7 @@ namespace CCNAssignment2;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow
 {
     private readonly CommandFactory _commandFactory;
     private BookDTO? _selectedBook;
@@ -30,7 +30,7 @@ public partial class MainWindow : Window
             var credentials = loginWindow.Credentials;
             DatabaseCredentialsManager.SetCredentials(credentials);
             InitializeDatabase();
-            this.Loaded += MainWindow_Loaded;
+            Loaded += MainWindow_Loaded;
         }
         else
         {
