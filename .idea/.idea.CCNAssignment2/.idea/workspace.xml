@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,26 +36,13 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/BorrowBookCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/BorrowBookDialog.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/Command.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/CommandLineUI_Component/Commands/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/NullCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/RenewLoanCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ReturnBookCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2/CommandLineUI_Component/Commands/ViewAllBooksCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -65,31 +55,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.CCNAssignment2.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Natha\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected=".NET Project.CCNAssignment2">
     <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -98,7 +88,25 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/CCNAssignment2/CCNAssignment2.csproj" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/CCNAssignment2Client/CCNAssignment2Client.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="CCNAssignment2Server" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/CCNAssignment2Server/CCNAssignment2Server.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
@@ -123,6 +131,9 @@
       <workItem from="1741245737067" duration="649000" />
       <workItem from="1741246732264" duration="588000" />
       <workItem from="1741249409575" duration="16669000" />
+      <workItem from="1741336188143" duration="3685000" />
+      <workItem from="1741432144479" duration="78000" />
+      <workItem from="1741684950252" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -212,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741273772094</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Resized borrow book window appropriately.">
+      <option name="closed" value="true" />
+      <created>1741341071133</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1741341071133</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +252,7 @@
     <MESSAGE value="Adjusted borrow book button to only be selectable when valid." />
     <MESSAGE value="Made renew loan work on the same principle as borrow book." />
     <MESSAGE value="Added return book as a UI method." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added return book as a UI method." />
+    <MESSAGE value="Resized borrow book window appropriately." />
+    <option name="LAST_COMMIT_MESSAGE" value="Resized borrow book window appropriately." />
   </component>
 </project>
