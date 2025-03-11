@@ -1,4 +1,5 @@
-﻿using DatabaseGateway;
+﻿using CCNAssignment2.ServerGateway;
+using DatabaseGateway;
 using DTOs;
 using UseCase;
 
@@ -21,7 +22,7 @@ namespace Controllers
 
         public override IDto ExecuteUseCase()
         {
-            return new BorrowBook_UseCase(memberId, bookId, new DatabaseGatewayFacade()).Execute();
+            return new BorrowBook_UseCase(memberId, bookId, new ServerGatewayFacade()).Execute();
         }
     }
 }

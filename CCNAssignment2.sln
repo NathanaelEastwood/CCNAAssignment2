@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCNAssignment2Client", "CCN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCNAssignment2Server", "CCNAssignment2Server\CCNAssignment2Server.csproj", "{A86B12A3-5F48-4ABE-88F7-529618960FB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityLayer", "EntityLayer\EntityLayer.csproj", "{4D36D1EE-F680-4CF3-B434-F94B9D70D87F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A86B12A3-5F48-4ABE-88F7-529618960FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86B12A3-5F48-4ABE-88F7-529618960FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86B12A3-5F48-4ABE-88F7-529618960FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D36D1EE-F680-4CF3-B434-F94B9D70D87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D36D1EE-F680-4CF3-B434-F94B9D70D87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D36D1EE-F680-4CF3-B434-F94B9D70D87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D36D1EE-F680-4CF3-B434-F94B9D70D87F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

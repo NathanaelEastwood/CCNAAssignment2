@@ -1,4 +1,5 @@
-﻿using DatabaseGateway;
+﻿using CCNAssignment2.ServerGateway;
+using DatabaseGateway;
 using DTOs;
 using UseCase;
 
@@ -13,7 +14,7 @@ namespace Controllers
 
         public override IDto ExecuteUseCase()
         {
-            return new InitialiseDatabase_UseCase(new DatabaseGatewayFacade()).Execute();
+            return new InitialiseDatabase_UseCase(new ServerGatewayFacade()).Execute();
         }
     }
 }
