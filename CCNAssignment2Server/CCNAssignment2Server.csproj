@@ -11,4 +11,8 @@
       <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Oracle.ManagedDataAccess" Version="23.7.0" />
+    </ItemGroup>
+
 </Project>

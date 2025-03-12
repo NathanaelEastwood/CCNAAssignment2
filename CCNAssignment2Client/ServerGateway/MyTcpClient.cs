@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using EntityLayer;
 
@@ -15,6 +16,10 @@ public static class MyTcpClient
     static MyTcpClient()
     {
         _tcpClient = new TcpClient();
+        if (!Connect("localhost", 4444))
+        {
+            throw new Exception("Connection failed");
+        }
     }
     
     private static bool Connect(string url, int portNumber)
@@ -34,48 +39,11 @@ public static class MyTcpClient
         return true;
     }
 
-    public static void WriteToServer()
+    public static void WriteToServer(Message message)
     {
-        if (Connect("localhost", 4444))
-        {
-            Console.WriteLine("Writing line");
-            _writer.Write(JsonSerializer.Serialize(new Message("test", 1, 2, 3)));
-            _writer.Flush();
-        }
-    }
-    
-    private static void InteractWithServer()
-    {
-        if (Connect("localhost", 4444))
-        {
-            string serverInput = _reader.ReadLine();
-            while (!serverInput.Equals("."))
-            {
-                string response = ProcessServerMessage(serverInput);
-                _writer.WriteLine(response);
-                _writer.Flush();
-                serverInput = _reader.ReadLine();
-            }
-        }
-        else
-        {
-            throw new Exception("Failed to connect to server");
-        }
-    }
-
-    private static string ProcessServerMessage(string serverInput)
-    {
-        Console.WriteLine("Server says: " + serverInput);
-        if (serverInput.Contains("Mary had"))
-        {
-            return "2. It's fleece was white as snow";
-        }
-
-        if (serverInput.Contains("Everywhere"))
-        {
-            return "4. The lamb was sure to go";
-        }
-
-        return "";
+        Console.WriteLine("Writing line");
+        string jsonMessage = JsonSerializer.Serialize(message);
+        _writer.WriteLine(jsonMessage); // Ensure the message is terminated with a newline
+        _writer.Flush(); // Ensure data is sent immediately
     }
 }
