@@ -1,4 +1,4 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MySql.Data.MySqlClient;
 
 namespace DatabaseGateway
 {
@@ -13,9 +13,9 @@ namespace DatabaseGateway
         {
             int numRowsInserted = 0;
 
-            OracleConnection conn = GetConnection();
+            MySqlConnection conn = GetConnection();
 
-            OracleCommand command = GetCommand(conn);
+            MySqlCommand command = GetCommand(conn);
 
             try
             {
@@ -30,7 +30,7 @@ namespace DatabaseGateway
             return numRowsInserted;
         }
 
-        protected abstract int DoInsert(OracleCommand command, T itemToInsert);
+        protected abstract int DoInsert(MySqlCommand command, T itemToInsert);
         protected override abstract string GetSQL();
     }
 }

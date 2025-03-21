@@ -1,5 +1,5 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using MySql.Data.MySqlClient;
 
 namespace DatabaseGateway
 {
@@ -9,14 +9,14 @@ namespace DatabaseGateway
         protected override string GetSQL()
         {
             return
-                "INSERT INTO SDAM_Member (ID, Name) " +
-                "VALUES (SDAM_Member_Seq.nextval, :name)";
+                "INSERT INTO SDAM_Member (Name) " +
+                "VALUES (@member_name)";
         }
 
-        protected override int DoInsert(OracleCommand command, Member memberToInsert)
+        protected override int DoInsert(MySqlCommand command, Member memberToInsert)
         {
+            command.Parameters.AddWithValue("@member_name", memberToInsert.Name);
             command.Prepare();
-            command.Parameters.Add(":name", memberToInsert.Name);
             int numRowsAffected = command.ExecuteNonQuery();
 
             if (numRowsAffected != 1)

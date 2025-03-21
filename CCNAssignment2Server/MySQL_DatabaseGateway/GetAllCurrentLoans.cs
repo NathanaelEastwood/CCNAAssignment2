@@ -1,5 +1,6 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using Entities.State;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace DatabaseGateway
@@ -23,13 +24,13 @@ namespace DatabaseGateway
         }
 
         // Gets all current loans
-        protected override List<Loan> DoSelect(OracleCommand command)
+        protected override List<Loan> DoSelect(MySqlCommand command)
         {
             List<Loan> list = new List<Loan>();
 
             try
             {
-                OracleDataReader dr = command.ExecuteReader();
+                MySqlDataReader dr = command.ExecuteReader();
 
                 while (dr.Read())
                 {

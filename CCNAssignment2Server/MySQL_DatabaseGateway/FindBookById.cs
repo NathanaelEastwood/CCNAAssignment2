@@ -1,5 +1,5 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using MySql.Data.MySqlClient;
 
 namespace DatabaseGateway
 {
@@ -18,18 +18,18 @@ namespace DatabaseGateway
             return 
                 "SELECT SDAM_Book.ID, Author, Title, ISBN, NumberOfRenewals " +
                 "FROM SDAM_Book LEFT JOIN SDAM_Loan ON SDAM_Book.Id = SDAM_Loan.BookId AND SDAM_Loan.ReturnDate is null " +
-                "WHERE SDAM_Book.id = :BookId";
+                "WHERE SDAM_Book.id = @BookId";
         }
 
-        protected override Book DoSelect(OracleCommand command)
+        protected override Book DoSelect(MySqlCommand command)
         {
             Book book = null;
 
             try
             {
+                command.Parameters.AddWithValue("@BookId", bookId);
                 command.Prepare();
-                command.Parameters.Add(":BookId", bookId);
-                OracleDataReader dr = command.ExecuteReader();
+                MySqlDataReader dr = command.ExecuteReader();
 
                 if (dr.Read())
                 {

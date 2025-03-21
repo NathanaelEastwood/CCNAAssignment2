@@ -44,38 +44,47 @@ public class Server
         using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8) { AutoFlush = true };
 
         Console.WriteLine("Client connected.");
-        
+
         try
         {
             // Send an initial message
-            var initialMessage = new Message ( "1. Mary had a little lamb", 1 , 2, 3);
+            var initialMessage = new Message("1. Mary had a little lamb", 1, 2, 3);
             string jsonResponse = JsonSerializer.Serialize(initialMessage);
             writer.WriteLine(jsonResponse);
 
             string clientJson;
-            while ((clientJson = reader.ReadLine()) != null)
+            while (socket.Connected && (clientJson = reader.ReadLine()) != null)
             {
                 try
                 {
-                    Message clientMessage = JsonSerializer.Deserialize<Message>(clientJson);
+                    Message? clientMessage = JsonSerializer.Deserialize<Message>(clientJson);
                     if (clientMessage == null || string.IsNullOrWhiteSpace(clientMessage.Action))
+                    {
+                        Console.WriteLine("Received invalid or empty request.");
                         continue;
+                    }
 
+                    Console.WriteLine("Processing request: " + clientMessage.Action);
                     string responseContent = ProcessClientMessage(clientMessage);
-                    var responseMessage = new Message(responseContent, 1 , 2, 3);
-                    
+                    var responseMessage = new Message(responseContent, 1, 2, 3);
+
                     string responseJson = JsonSerializer.Serialize(responseMessage);
                     writer.WriteLine(responseJson);
                 }
                 catch (JsonException)
                 {
                     Console.WriteLine("Received invalid JSON.");
+                    writer.WriteLine(JsonSerializer.Serialize(new { Error = "Invalid JSON format." }));
                 }
             }
         }
         catch (IOException e)
         {
             Console.WriteLine("ERROR: " + e.Message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Unexpected error: " + e.Message);
         }
 
         socket.Close();

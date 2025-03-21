@@ -1,4 +1,4 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace DatabaseGateway
@@ -7,14 +7,14 @@ namespace DatabaseGateway
     // methods in DatabaseSelector, DatabaseInserter and DatabaseUpdater
     abstract class DatabaseOperator
     {
-        protected OracleConnection GetConnection()
+        protected MySqlConnection GetConnection()
         {
             return DatabaseConnectionPool.GetInstance().AcquireConnection();
         }
 
-        protected OracleCommand GetCommand(OracleConnection conn)
+        protected MySqlCommand GetCommand(MySqlConnection conn)
         {
-            return new OracleCommand
+            return new MySqlCommand
             {
                 Connection = conn,
                 CommandText = GetSQL(),
@@ -24,7 +24,7 @@ namespace DatabaseGateway
 
         protected abstract string GetSQL();
 
-        protected void ReleaseConnection(OracleConnection conn)
+        protected void ReleaseConnection(MySqlConnection conn)
         {
             DatabaseConnectionPool.GetInstance().ReleaseConnection(conn);
         }

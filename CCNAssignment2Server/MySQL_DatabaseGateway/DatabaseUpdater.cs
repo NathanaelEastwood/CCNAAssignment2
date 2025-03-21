@@ -1,25 +1,25 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MySql.Data.MySqlClient;
 
 namespace DatabaseGateway
 {
 
     // This class and its subclasses implement the Table Data Gateway 
     // and Template Method design patterns
-    abstract class DatabaseSelector<T> : DatabaseOperator, ISelector<T>
+    abstract class DatabaseUpdater<T> : DatabaseOperator, IUpdater<T>
     {
 
         // This method is a Template Method
-        public T Select()
+        public int Update(T itemToUpdate)
         {
-            T item;
+            int numRowsUpdated = 0;
 
-            OracleConnection conn = GetConnection();
+            MySqlConnection conn = GetConnection();
 
-            OracleCommand command = GetCommand(conn);
+            MySqlCommand command = GetCommand(conn);
 
             try
             {
-                item = DoSelect(command);
+                numRowsUpdated = DoUpdate(command, itemToUpdate);
             }
             catch (Exception e)
             {
@@ -27,10 +27,10 @@ namespace DatabaseGateway
             }
 
             ReleaseConnection(conn);
-            return item;
+            return numRowsUpdated;
         }
 
-        protected abstract T DoSelect(OracleCommand command);
+        protected abstract int DoUpdate(MySqlCommand command, T itemToUpdate);
         protected override abstract string GetSQL();
     }
 }

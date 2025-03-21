@@ -1,5 +1,5 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using MySql.Data.MySqlClient;
 
 namespace DatabaseGateway
 {
@@ -10,11 +10,11 @@ namespace DatabaseGateway
         {
             return
                 "UPDATE SDAM_Loan " +
-                "SET returnDate = :returnDate " +
-                "WHERE Id = :loanId";
+                "SET returnDate = @returnDate " +
+                "WHERE Id = @loanId";
         }
 
-        protected override int DoUpdate(OracleCommand command, Loan loanToUpdate)
+        protected override int DoUpdate(MySqlCommand command, Loan loanToUpdate)
         {
             int numRowsAffected = 0;
 
@@ -22,9 +22,9 @@ namespace DatabaseGateway
             {
                 try
                 {
+                    command.Parameters.AddWithValue("@returnDate", DateTime.Now);
+                    command.Parameters.AddWithValue("@loanId", loanToUpdate.ID);
                     command.Prepare();
-                    command.Parameters.Add(":returnDate", DateTime.Now);
-                    command.Parameters.Add(":loanId", loanToUpdate.ID);
                     numRowsAffected = command.ExecuteNonQuery();
 
                     if (numRowsAffected != 1)

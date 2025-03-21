@@ -1,5 +1,6 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using Entities.State;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace DatabaseGateway
@@ -19,12 +20,12 @@ namespace DatabaseGateway
                 "FROM SDAM_Book LEFT JOIN SDAM_Loan ON SDAM_Book.Id = SDAM_Loan.BookId AND SDAM_Loan.ReturnDate is null";
         }
 
-        protected override List<Book> DoSelect(OracleCommand command)
+        protected override List<Book> DoSelect(MySqlCommand command)
         {
             List<Book> books = new List<Book>();
             try
             {
-                OracleDataReader dr = command.ExecuteReader();
+                MySqlDataReader dr = command.ExecuteReader();
 
                 while (dr.Read())
                 {

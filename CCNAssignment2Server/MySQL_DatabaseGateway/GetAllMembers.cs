@@ -1,5 +1,5 @@
 ﻿using Entities;
-using Oracle.ManagedDataAccess.Client;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace DatabaseGateway
@@ -16,13 +16,13 @@ namespace DatabaseGateway
             return "SELECT ID, Name FROM SDAM_Member";
         }
 
-        protected override List<Member> DoSelect(OracleCommand command)
+        protected override List<Member> DoSelect(MySqlCommand command)
         {
             List<Member> members = new List<Member>();
 
             try
             {
-                OracleDataReader dr = command.ExecuteReader();
+                MySqlDataReader dr = command.ExecuteReader();
 
                 while (dr.Read())
                 {

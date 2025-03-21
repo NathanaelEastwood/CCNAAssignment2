@@ -1,5 +1,4 @@
-﻿using Oracle.ManagedDataAccess.Client;
-using System;
+﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace DatabaseGateway
@@ -15,13 +14,13 @@ namespace DatabaseGateway
         {
             return instance;
         }
-        private List<OracleConnection> availableConnections;
-        private List<OracleConnection> busyConnections;
+        private List<MySqlConnection> availableConnections;
+        private List<MySqlConnection> busyConnections;
 
         protected DatabaseConnectionPool(int sizeOfPool)
         {
-            availableConnections = new List<OracleConnection>(sizeOfPool);
-            busyConnections = new List<OracleConnection>(sizeOfPool);
+            availableConnections = new List<MySqlConnection>(sizeOfPool);
+            busyConnections = new List<MySqlConnection>(sizeOfPool);
 
             for (int i = 0; i < sizeOfPool; i++)
             {
@@ -31,24 +30,24 @@ namespace DatabaseGateway
 
         ~DatabaseConnectionPool()
         {
-            foreach (OracleConnection conn in availableConnections)
+            foreach (MySqlConnection conn in availableConnections)
             {
                 CloseConnection(conn);
             }
             availableConnections.Clear();
 
-            foreach (OracleConnection conn in busyConnections)
+            foreach (MySqlConnection conn in busyConnections)
             {
                 CloseConnection(conn);
             }
             busyConnections.Clear();
         }
 
-        public OracleConnection AcquireConnection()
+        public MySqlConnection AcquireConnection()
         {
             if (availableConnections.Count > 0)
             {
-                OracleConnection conn = availableConnections[0];
+                MySqlConnection conn = availableConnections[0];
                 availableConnections.RemoveAt(0);
                 busyConnections.Add(conn);
                 return conn;
@@ -57,7 +56,7 @@ namespace DatabaseGateway
             return null;
         }
 
-        private void CloseConnection(OracleConnection conn)
+        private void CloseConnection(MySqlConnection conn)
         {
             if (conn != null)
             {
@@ -72,18 +71,16 @@ namespace DatabaseGateway
             }
         }
 
-        protected OracleConnection CreateConnection()
+        protected MySqlConnection CreateConnection()
         {
-            string DB_CONNECTION_STRING =
-                "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=vmp3wstuoradb1.staff.staffs.ac.uk)(PORT=1521))" +
-                "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=STORAPDB.staff.staffs.ac.uk)));enlist=dynamic;" +
-                $"User Id=e026008k;Password=e026008k;";
+            string DB_CONNECTION_STRING
+                = "Server=localhost;Port=3306;Database=ccnassignment2;Uid=root;Pwd=root;";
 
-            OracleConnection conn;
+            MySqlConnection conn = null;
 
             try
             {
-                conn = new OracleConnection(DB_CONNECTION_STRING);
+                conn = new MySqlConnection(DB_CONNECTION_STRING);
                 conn.Open();
             }
             catch (Exception e)
@@ -94,7 +91,7 @@ namespace DatabaseGateway
             return conn;
         }
 
-        public void ReleaseConnection(OracleConnection conn)
+        public void ReleaseConnection(MySqlConnection conn)
         {
             if (busyConnections.Contains(conn))
             {
