@@ -41,7 +41,7 @@ public static class MyTcpClient
 
     public static void WriteToServer(Message message)
     {
-        Console.WriteLine("Writing line");
+        Console.WriteLine($"Writing line with {message.Action}");
         string jsonMessage = JsonSerializer.Serialize(message);
         _writer.WriteLine(jsonMessage); // Ensure the message is terminated with a newline
         _writer.Flush(); // Ensure data is sent immediately

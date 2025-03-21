@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <PackageReference Include="Oracle.ManagedDataAccess" Version="23.7.0" />
+      <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     </ItemGroup>
 
 </Project>

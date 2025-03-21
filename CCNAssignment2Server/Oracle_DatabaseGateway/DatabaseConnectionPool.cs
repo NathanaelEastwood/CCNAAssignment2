@@ -1,6 +1,4 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
 
 namespace DatabaseGateway
 {
@@ -13,7 +11,7 @@ namespace DatabaseGateway
 
         public static DatabaseConnectionPool GetInstance()
         {
-            return instance;
+            return instance; 
         }
         private List<OracleConnection> availableConnections;
         private List<OracleConnection> busyConnections;
@@ -77,7 +75,7 @@ namespace DatabaseGateway
             string DB_CONNECTION_STRING =
                 "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=vmp3wstuoradb1.staff.staffs.ac.uk)(PORT=1521))" +
                 "(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=STORAPDB.staff.staffs.ac.uk)));enlist=dynamic;" +
-                $"User Id=e026008k;Password=e026008k;";
+                "User Id=e026008k;Password=e026008k;";
 
             OracleConnection conn;
 
@@ -88,7 +86,14 @@ namespace DatabaseGateway
             }
             catch (Exception e)
             {
-                throw new Exception("ERROR: connection to database failed", e);
+                Console.WriteLine($"Exception Type: {e.GetType()}");
+                Console.WriteLine($"Message: {e.Message}");
+                Console.WriteLine($"StackTrace: {e.StackTrace}");
+                if (e.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
+                }
+                throw;
             }
 
             return conn;
