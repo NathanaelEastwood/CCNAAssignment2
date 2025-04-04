@@ -8,65 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/AbstractController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/AbstractPresenter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/AbstractUseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/BookConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/BookDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/BookDTO_Builder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/BookDTO_List.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/Converter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/IDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/LoanConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/LoanDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/LoanDTO_Builder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/LoanDTO_List.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/MemberConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/MemberDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/MemberDTO_Builder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/MemberDTO_List.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/DTOs/MessageDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/IViewData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/BorrowBook_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/InitialiseDatabase_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/RenewLoan_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/ReturnBook_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/ViewAllBooks_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/ViewAllMembers_UseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/ViewCurrentLoans_UseCase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/CCNAssignment2Server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/CCNAssignment2Server.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseConnectionPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseGatewayFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseInitialiser.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseInserter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInserter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseOperationFactoryForBooks.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperationFactoryForBooks.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseOperationFactoryForLoans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperationFactoryForLoans.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseOperationFactoryForMembers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperationFactoryForMembers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseOperator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseSelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/DatabaseUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseUpdater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/FindBookById.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/FindBookById.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/FindCurrentLoanById.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/FindCurrentLoanById.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/FindMemberById.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/FindMemberById.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/GetAllBooks.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/GetAllBooks.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/GetAllCurrentLoans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/GetAllCurrentLoans.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/GetAllMembers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/GetAllMembers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/IDatabaseGatewayFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/IDatabaseGatewayFacade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/IInserter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/IInserter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/ISelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/ISelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/IUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/IUpdater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/InsertBook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertBook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/InsertLoan.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/InsertMember.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertMember.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/NullSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/NullSelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/NullUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/NullUpdater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/UpdateLoanRenewal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/UpdateLoanRenewal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Oracle_DatabaseGateway/UpdateLoanReturnDate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/UpdateLoanReturnDate.cs" afterDir="false" />
-    </list>
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Changed project to use MySQL instead of Oracle due to a bug in the Oracle connection." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,33 +53,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.CCNAssignment2.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.CCNAssignment2Server.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;,
+      &quot;mysql&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Natha\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.CCNAssignment2">
     <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -198,6 +140,7 @@
       <workItem from="1741770860629" duration="5557000" />
       <workItem from="1742548975032" duration="2384000" />
       <workItem from="1743697723279" duration="2357000" />
+      <workItem from="1743775389999" duration="590000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -335,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742550789585</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Changed project to use MySQL instead of Oracle due to a bug in the Oracle connection.">
+      <option name="closed" value="true" />
+      <created>1743775954749</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775954749</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +313,8 @@
     <MESSAGE value="Added entity layer, and changed the gateway facade to use the server gateway." />
     <MESSAGE value="Moved OracleDatabase functions into Server project." />
     <MESSAGE value="Made changes to try and fix issue with DB not connecting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to try and fix issue with DB not connecting." />
+    <MESSAGE value="Changed project to use MySQL instead of Oracle due to a bug in the Oracle connection." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed project to use MySQL instead of Oracle due to a bug in the Oracle connection." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
