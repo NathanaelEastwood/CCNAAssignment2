@@ -1,4 +1,5 @@
-﻿using Entities.State;
+﻿using Entities;
+using Entities.State;
 
 namespace DTOs
 {

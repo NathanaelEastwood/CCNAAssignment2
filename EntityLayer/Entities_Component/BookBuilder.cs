@@ -16,7 +16,7 @@ namespace Entities
             this.author = "";
             this.isbn = "";
             this.title = "";
-            this.state = null;
+            this.state = BookState.Available;
         }
 
         public Book Build()

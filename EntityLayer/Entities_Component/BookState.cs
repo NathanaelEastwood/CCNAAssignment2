@@ -2,14 +2,9 @@
 {
 
     // This class and its implementing classes implement the State design pattern
-    public interface BookState
+    public enum BookState
     {
-        bool CanBorrow();
-
-        bool CanReturn();
-
-        BookState Borrow();
-
-        BookState Return();
+        Available,
+        Borrowed
     }
 }

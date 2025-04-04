@@ -1,5 +1,6 @@
 ﻿namespace Entities
 {
+    [Serializable]
     public class Loan : IEntity
     {
         public int ID { get;  }

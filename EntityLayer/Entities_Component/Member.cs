@@ -1,5 +1,6 @@
 ﻿namespace Entities
 {
+    [Serializable]
     public class Member : IEntity
     {
         public int ID { get; }

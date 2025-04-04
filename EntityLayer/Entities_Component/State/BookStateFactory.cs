@@ -6,11 +6,11 @@
         {
             if (numberOfRenewals == -1)
             {
-                return new BookAvailable();
+                return BookState.Borrowed;
             }
             else
             {
-                return new BookOnLoan();
+                return BookState.Available;
             }
         }
 
@@ -18,11 +18,11 @@
         {
             if (state == "Available")
             {
-                return new BookAvailable();
+                return BookState.Available;
             }
             else
-            {
-                return new BookOnLoan();
+            { 
+                return BookState.Borrowed;
             }
         }
     }
