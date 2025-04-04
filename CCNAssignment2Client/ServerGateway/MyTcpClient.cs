@@ -39,10 +39,10 @@ public static class MyTcpClient
         return true;
     }
 
-    public static void WriteToServer(Message message)
+    public static void WriteToServer(ClientMessageDTO clientMessageDto)
     {
-        Console.WriteLine($"Writing line with {message.Action}");
-        string jsonMessage = JsonSerializer.Serialize(message);
+        Console.WriteLine($"Writing line with {clientMessageDto.Action}");
+        string jsonMessage = JsonSerializer.Serialize(clientMessageDto);
         _writer.WriteLine(jsonMessage); // Ensure the message is terminated with a newline
         _writer.Flush(); // Ensure data is sent immediately
     }

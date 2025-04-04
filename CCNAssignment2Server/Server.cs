@@ -5,6 +5,7 @@ using System.Text.Json;
 using DatabaseGateway;
 using Entities;
 using EntityLayer;
+using Org.BouncyCastle.Security.Certificates;
 using UseCase;
 
 namespace CCNAssignment2Server;
@@ -47,17 +48,13 @@ public class Server
 
         try
         {
-            // Send an initial message
-            var initialMessage = new Message("1. Mary had a little lamb", 1, 2, 3);
-            string jsonResponse = JsonSerializer.Serialize(initialMessage);
-            writer.WriteLine(jsonResponse);
 
             string clientJson;
             while (socket.Connected && (clientJson = reader.ReadLine()) != null)
             {
                 try
                 {
-                    Message? clientMessage = JsonSerializer.Deserialize<Message>(clientJson);
+                    ClientMessageDTO? clientMessage = JsonSerializer.Deserialize<ClientMessageDTO>(clientJson);
                     if (clientMessage == null || string.IsNullOrWhiteSpace(clientMessage.Action))
                     {
                         Console.WriteLine("Received invalid or empty request.");
@@ -66,7 +63,7 @@ public class Server
 
                     Console.WriteLine("Processing request: " + clientMessage.Action);
                     string responseContent = ProcessClientMessage(clientMessage);
-                    var responseMessage = new Message(responseContent, 1, 2, 3);
+                    var responseMessage = new ResponseMessageDTO(responseContent);
 
                     string responseJson = JsonSerializer.Serialize(responseMessage);
                     writer.WriteLine(responseJson);
@@ -91,31 +88,82 @@ public class Server
         Console.WriteLine("Client disconnected.");
     }
 
-    private string ProcessClientMessage(Message clientMessage)
+    private string ProcessClientMessage(ClientMessageDTO clientMessageDto)
     {
-        Console.WriteLine("Client says: " + clientMessage.Action);
-        switch (clientMessage.Action)
+        Console.WriteLine("Client says: " + clientMessageDto.Action);
+        switch (clientMessageDto.Action)
         {
             case "AddBook":
-                _databaseGatewayFacade.AddBook(_databaseGatewayFacade.FindBook(clientMessage.BookId));
+                if (clientMessageDto.Book != null)
+                {
+                    _databaseGatewayFacade.AddBook(clientMessageDto.Book);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action AddBook");
+                }
                 break;
             case "AddMember":
-                _databaseGatewayFacade.AddMember(new Member(1, "TestMember"));
+                if (clientMessageDto.Member != null)
+                {
+                    _databaseGatewayFacade.AddMember(clientMessageDto.Member);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action AddMember");
+                }
                 break;
             case "CreateLoan":
-                _databaseGatewayFacade.CreateLoan(null);
+                if (clientMessageDto.Loan != null)
+                {
+                    _databaseGatewayFacade.CreateLoan(clientMessageDto.Loan);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action CreateLoan");
+                }
                 break;
             case "EndLoan":
-                _databaseGatewayFacade.EndLoan(clientMessage.LoanId, clientMessage.BookId);
+                if (clientMessageDto is { Loan: not null, Book: not null })
+                {
+                    _databaseGatewayFacade.EndLoan(clientMessageDto.Loan.ID, clientMessageDto.Book.ID);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action EndLoan");
+                }
                 break;
             case "FindBook":
-                _databaseGatewayFacade.FindBook(clientMessage.BookId);
+                if (clientMessageDto.BookId != null)
+                {
+                    _databaseGatewayFacade.FindBook((int)clientMessageDto.BookId);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action FindBook");
+                }
+
                 break;
             case "FindLoan":
-                _databaseGatewayFacade.FindLoan(clientMessage.LoanId, clientMessage.BookId);
+                if (clientMessageDto is { BookId: not null, LoanId: not null })
+                {
+                    _databaseGatewayFacade.FindLoan((int)clientMessageDto.LoanId, (int)clientMessageDto.BookId);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action FindLoan");
+                }
+
                 break;
             case "FindMember":
-                _databaseGatewayFacade.FindMember(clientMessage.MemberId);
+                if (clientMessageDto.MemberId != null)
+                {
+                    _databaseGatewayFacade.FindMember((int)clientMessageDto.MemberId);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action FindMember");
+                }
                 break;
             case "GetAllBooks":
                 _databaseGatewayFacade.GetAllBooks();
@@ -130,7 +178,14 @@ public class Server
                 _databaseGatewayFacade.InitialiseDatabase();
                 break;
             case "RenewLoan":
-                _databaseGatewayFacade.RenewLoan(null);
+                if (clientMessageDto.Loan != null)
+                {
+                    _databaseGatewayFacade.RenewLoan(clientMessageDto.Loan);
+                }
+                else
+                {
+                    throw new Exception("Incorrect parameters given for action RenewLoan");
+                }
                 break;
             default:
                 throw new Exception("Unknown request type.");
