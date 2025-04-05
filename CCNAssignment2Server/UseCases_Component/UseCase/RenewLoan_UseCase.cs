@@ -22,16 +22,9 @@ namespace UseCase
             {
                 return new MessageDTO("Loan cannot be found");
             }
-
-            if (loan.Renew())
-            {
-                gatewayFacade.RenewLoan(loan);
-                return new MessageDTO("Loan has been renewed");
-            }
-            else
-            {
-                return new MessageDTO("Loan cannot be renewed");
-            }
+            
+            gatewayFacade.RenewLoan(loan);
+            return new MessageDTO("Loan has been renewed");
         }
     }
 }

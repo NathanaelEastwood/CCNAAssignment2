@@ -1,14 +1,14 @@
 using System.Windows;
-using DTOs;
+using Entities;
 
 namespace CCNAssignment2;
 
 public partial class BorrowBookDialog : Window
 {
-    public BookDTO? SelectedBook { get; private set; }
-    public MemberDTO? SelectedMember { get; private set; }
+    public Book? SelectedBook { get; private set; }
+    public Member? SelectedMember { get; private set; }
 
-    public BorrowBookDialog(BookDTO? book, MemberDTO? member)
+    public BorrowBookDialog(Book? book, Member? member)
     {
         InitializeComponent();
         SelectedBook = book;

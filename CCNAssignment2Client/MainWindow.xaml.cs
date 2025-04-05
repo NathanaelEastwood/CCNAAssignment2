@@ -1,10 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using CCNAssignment2.WPFPresenters;
-using CommandLineUI;
-using CommandLineUI.Commands;
-using DatabaseGateway;
-using DTOs;
+using CCNAssignment2.ServerGateway;
+using Entities;
+using UseCase;
 
 namespace CCNAssignment2;
 
@@ -13,22 +11,21 @@ namespace CCNAssignment2;
 /// </summary>
 public partial class MainWindow
 {
-    private readonly CommandFactory _commandFactory;
-    private BookDTO? _selectedBook;
-    private MemberDTO? _selectedMember;
-    private LoanDTO? _selectedLoan;
+    private readonly IDatabaseGatewayFacade _databaseGatewayFacade;
+    private Book? _selectedBook;
+    private Member? _selectedMember;
+    private Loan? _selectedLoan;
 
     public MainWindow()
     {
         InitializeComponent();
-        _commandFactory = new CommandFactory();
+        _databaseGatewayFacade = new ServerGatewayFacade();
         
         // Show login window when created through XAML
         var loginWindow = new DatabaseLoginWindow();
         if (loginWindow.ShowDialog() == true)
         {
             var credentials = loginWindow.Credentials;
-            DatabaseCredentialsManager.SetCredentials(credentials);
             InitializeDatabase();
             Loaded += MainWindow_Loaded;
         }
@@ -49,19 +46,16 @@ public partial class MainWindow
         try
         {
             // Load books
-            var booksCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_BOOKS);
-            var booksData = booksCommand.Execute();
-            BooksGrid.ItemsSource = booksData.ViewData;
+            var booksData = _databaseGatewayFacade.GetAllBooks();
+            BooksGrid.ItemsSource = booksData;
 
             // Load members
-            var membersCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
-            var membersData = membersCommand.Execute();
-            MembersGrid.ItemsSource = membersData.ViewData;
+            var membersData = _databaseGatewayFacade.GetAllMembers();
+            MembersGrid.ItemsSource = membersData;
 
             // Load loans
-            var loansCommand = _commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
-            var loansData = loansCommand.Execute();
-            LoansGrid.ItemsSource = loansData.ViewData;
+            var loansData = _databaseGatewayFacade.GetCurrentLoans();
+            LoansGrid.ItemsSource = loansData;
         }
         catch (Exception ex)
         {
@@ -73,8 +67,13 @@ public partial class MainWindow
     {
         try
         {
-            var command = _commandFactory.CreateCommand(RequestUseCase.INITIALISE_DATABASE);
-            command.Execute();
+            _databaseGatewayFacade.InitialiseDatabase();
+            _databaseGatewayFacade.AddBook(new Book(1, "Beff Jezos", "Amazong 101", "A1230", BookState.Available));
+            _databaseGatewayFacade.AddBook(new Book(2, "Beff Jezos", "Amazong 102", "A1231", BookState.Available));
+            _databaseGatewayFacade.AddBook(new Book(3, "Beff Jezos", "Amazong 103", "A1232", BookState.Available));
+
+            _databaseGatewayFacade.AddMember(new Member(1, "Nathanael"));
+            _databaseGatewayFacade.AddMember(new Member(2, "Grace"));
         }
         catch (Exception ex)
         {
@@ -97,19 +96,19 @@ public partial class MainWindow
 
     private void BooksGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        _selectedBook = BooksGrid.SelectedItem as BookDTO;
+        _selectedBook = BooksGrid.SelectedItem as Book;
         UpdateBorrowButtonState();
     }
 
     private void MembersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        _selectedMember = MembersGrid.SelectedItem as MemberDTO;
+        _selectedMember = MembersGrid.SelectedItem as Member;
         UpdateBorrowButtonState();
     }
 
     private void LoansGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        _selectedLoan = LoansGrid.SelectedItem as LoanDTO;
+        _selectedLoan = LoansGrid.SelectedItem as Loan;
         UpdateRenewButtonState();
         UpdateReturnButtonState();
     }
@@ -120,7 +119,7 @@ public partial class MainWindow
         {
             bool canBorrow = _selectedBook != null && 
                            _selectedMember != null && 
-                           _selectedBook.State == "Available";
+                           _selectedBook.State == BookState.Available;
             BorrowBookButton.IsEnabled = canBorrow;
         }
     }
@@ -149,10 +148,9 @@ public partial class MainWindow
         {
             try
             {
-                _commandFactory.SetLoanParameters(_selectedMember.ID, _selectedBook.Id);
-                var command = _commandFactory.CreateCommand(RequestUseCase.BORROW_BOOK);
-                var returnedData = command.Execute();
-                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                var returnedData = _databaseGatewayFacade.CreateLoan(new Loan(0, _selectedMember, _selectedBook,
+                    DateTime.Now, DateTime.Today));
+                ResultsTextBlock.Text = $"Loan Added with Status Code: {returnedData}";
                 LoadInitialData(); // Refresh all lists
             }
             catch (Exception ex)
@@ -168,10 +166,10 @@ public partial class MainWindow
         {
             try
             {
-                _commandFactory.SetLoanParameters(_selectedLoan.Member.ID, _selectedLoan.Book.Id);
-                var command = _commandFactory.CreateCommand(RequestUseCase.RENEW_LOAN);
-                var returnedData = command.Execute();
-                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                Loan previousLoan = _selectedLoan;
+                var returnedData = _databaseGatewayFacade.RenewLoan(new Loan(previousLoan.ID, previousLoan.Member,
+                    previousLoan.Book, previousLoan.LoanDate, previousLoan.ReturnDate + new TimeSpan(1, 0, 0, 0)));
+                ResultsTextBlock.Text = $"Loan renewed with Status Code: {returnedData}";
                 LoadInitialData(); // Refresh all lists
             }
             catch (Exception ex)
@@ -187,10 +185,8 @@ public partial class MainWindow
         {
             try
             {
-                _commandFactory.SetLoanParameters(_selectedLoan.Member.ID, _selectedLoan.Book.Id);
-                var command = _commandFactory.CreateCommand(RequestUseCase.RETURN_BOOK);
-                var returnedData = command.Execute();
-                ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                var returnedData = _databaseGatewayFacade.EndLoan(_selectedMember.ID, _selectedBook.ID);
+                ResultsTextBlock.Text = $"Book returned with Status Code: {returnedData}";
                 LoadInitialData(); // Refresh all lists
             }
             catch (Exception ex)
@@ -206,36 +202,30 @@ public partial class MainWindow
         {
             try
             {
-                int useCase = GetUseCaseFromButtonContent(button.Content.ToString());
-                var command = _commandFactory.CreateCommand(useCase);
-                UiViewData returnedData = command.Execute();
+                var content = button.Content.ToString();
 
                 // Handle different types of operations
-                switch (useCase)
+                switch (content)
                 {
-                    case RequestUseCase.VIEW_ALL_BOOKS:
-                        BooksGrid.ItemsSource = returnedData.ViewData;
+                    case "Refresh Books":
+                        BooksGrid.ItemsSource = _databaseGatewayFacade.GetAllBooks();
                         ResultsTextBlock.Text = "Books list refreshed";
                         break;
 
-                    case RequestUseCase.VIEW_ALL_MEMBERS:
-                        MembersGrid.ItemsSource = returnedData.ViewData;
+                    case "Refresh Members":
+                        MembersGrid.ItemsSource = _databaseGatewayFacade.GetAllMembers();
                         ResultsTextBlock.Text = "Members list refreshed";
                         break;
 
-                    case RequestUseCase.VIEW_CURRENT_LOANS:
-                        LoansGrid.ItemsSource = returnedData.ViewData;
+                    case "Refresh Loans":
+                        LoansGrid.ItemsSource = _databaseGatewayFacade.GetCurrentLoans();
                         ResultsTextBlock.Text = "Loans list refreshed";
                         break;
 
-                    case RequestUseCase.RETURN_BOOK:
-                    case RequestUseCase.RENEW_LOAN:
-                        ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
+                    case "Return Book":
+                    case "Borrow Book":
+                        ResultsTextBlock.Text = "Reloading all  list data";
                         LoadInitialData(); // Refresh all lists
-                        break;
-
-                    default:
-                        ResultsTextBlock.Text = returnedData.ViewData[0].ToString();
                         break;
                 }
             }
@@ -244,19 +234,5 @@ public partial class MainWindow
                 ResultsTextBlock.Text = $"Error: {ex.Message}";
             }
         }
-    }
-
-    private int GetUseCaseFromButtonContent(string content)
-    {
-        return content switch
-        {
-            "Borrow Book" => RequestUseCase.BORROW_BOOK,
-            "Return Book" => RequestUseCase.RETURN_BOOK,
-            "Renew Loan" => RequestUseCase.RENEW_LOAN,
-            "Refresh Books" => RequestUseCase.VIEW_ALL_BOOKS,
-            "Refresh Members" => RequestUseCase.VIEW_ALL_MEMBERS,
-            "Refresh Loans" => RequestUseCase.VIEW_CURRENT_LOANS,
-            _ => throw new ArgumentException($"Unknown operation: {content}")
-        };
     }
 }

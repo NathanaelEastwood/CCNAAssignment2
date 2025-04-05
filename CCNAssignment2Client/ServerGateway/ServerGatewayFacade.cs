@@ -135,7 +135,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
     {
         ClientMessageDTO messageDto = new ClientMessageDTO
         {
-            Action = "RenewLoan"
+            Action = "RenewLoan",
+            Loan = loan
         };
         ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
         return response.ResponseCode;

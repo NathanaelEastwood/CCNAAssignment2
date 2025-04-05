@@ -1,14 +1,13 @@
-﻿using DTOs;
-using UseCase;
+﻿using Entities;
 
 namespace CCNAssignment2.WPFPresenters;
 
-public class UiViewData : IViewData
+public class UiViewData
 {
-    public UiViewData(List<IDto> data)
+    public UiViewData(List<IEntity> data)
     {
         ViewData = data;
     }
     
-    public List<IDto> ViewData { get; }
+    public List<IEntity> ViewData { get; }
 }
