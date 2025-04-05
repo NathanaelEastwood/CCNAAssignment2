@@ -39,11 +39,22 @@ public static class MyTcpClient
         return true;
     }
 
-    public static void WriteToServer(ClientMessageDTO clientMessageDto)
+    public static ResponseMessageDTO WriteToServer(ClientMessageDTO clientMessageDto)
     {
         Console.WriteLine($"Writing line with {clientMessageDto.Action}");
+
+        // Serialize and send the message
         string jsonMessage = JsonSerializer.Serialize(clientMessageDto);
-        _writer.WriteLine(jsonMessage); // Ensure the message is terminated with a newline
+        _writer.WriteLine(jsonMessage); // Send message with newline
         _writer.Flush(); // Ensure data is sent immediately
+
+        // Read the response from the server
+        string responseLine = _reader.ReadLine(); // Assuming _reader is a StreamReader
+        Console.WriteLine($"Received response: {responseLine}");
+
+        // Deserialize the response
+        ResponseMessageDTO response = JsonSerializer.Deserialize<ResponseMessageDTO>(responseLine);
+        return response;
     }
+
 }

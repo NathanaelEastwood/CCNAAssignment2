@@ -1,11 +1,12 @@
-﻿namespace EntityLayer;
+﻿using Entities;
+
+namespace EntityLayer;
 
 [Serializable]
 public class ResponseMessageDTO
 {
-    public ResponseMessageDTO(string response)
-    {
-        Response = response;
-    }
-    public string Response { get; set; }
+    public int ResponseCode { get; set; }
+    public List<Book>? Book { get; set; }
+    public List<Loan>? Loan { get; set; }
+    public List<Member>? Member { get; set; }
 }

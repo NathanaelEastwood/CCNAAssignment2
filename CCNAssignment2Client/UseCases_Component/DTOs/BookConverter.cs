@@ -33,6 +33,7 @@ namespace DTOs
                     .WithAuthor(entity.Author)
                     .WithId(entity.ID)
                     .WithISBN(entity.ISBN)
+                    .WithState(entity.State)
                     .WithTitle(entity.Title)
                 .Build();
         }

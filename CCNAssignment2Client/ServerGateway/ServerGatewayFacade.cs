@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Entities.State;
 using EntityLayer;
 using UseCase;
 
@@ -13,14 +12,14 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
 
     public int AddBook(Book b)
     {
-        ClientMessageDTO message = new ClientMessageDTO
+        ClientMessageDTO messageDto = new ClientMessageDTO
         {
             Book = b,
             BookId = b.ID,
             Action = "AddBook"
         };
-        MyTcpClient.WriteToServer(message);
-        return 1;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.ResponseCode;
     }
 
     public int AddMember(Member m)
@@ -31,8 +30,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             MemberId = m.ID,
             Action = "AddMember"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return 1;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.ResponseCode;
     }
 
     public int CreateLoan(Loan loan)
@@ -43,8 +42,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             LoanId = loan.ID,
             Action = "CreateLoan"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return 1;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.ResponseCode;
     }
 
     public int EndLoan(int memberId, int bookId)
@@ -55,8 +54,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             BookId = bookId,
             Action = "EndLoan"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return 1;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.ResponseCode;
     }
 
     public Book FindBook(int bookId)
@@ -66,8 +65,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             BookId = bookId,
             Action = "FindBook"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return null;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Book.FirstOrDefault();
     }
 
     public Loan FindLoan(int memberId, int bookId)
@@ -78,8 +77,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             MemberId = memberId,
             Action = "FindLoan"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return null;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Loan.FirstOrDefault();
     }
 
     public Member FindMember(int memberId)
@@ -89,18 +88,18 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
             MemberId = memberId,
             Action = "FindMember"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return new Member(1, "two");
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Member.FirstOrDefault();
     }
 
     public List<Book> GetAllBooks()
     {
         ClientMessageDTO messageDto = new ClientMessageDTO
         {
-            Action = "GetAllMembers"
+            Action = "GetAllBooks"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return new List<Book>();
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Book;
     }
 
     public List<Member> GetAllMembers()
@@ -109,8 +108,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
         {
             Action = "GetAllMembers"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return new List<Member>();
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Member;
     }
 
     public List<Loan> GetCurrentLoans()
@@ -119,8 +118,8 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
         {
             Action = "GetCurrentLoans"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return new List<Loan>();
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.Loan;
     }
 
     public void InitialiseDatabase()
@@ -138,7 +137,7 @@ public class ServerGatewayFacade : IDatabaseGatewayFacade
         {
             Action = "RenewLoan"
         };
-        MyTcpClient.WriteToServer(messageDto);
-        return 0;
+        ResponseMessageDTO response = MyTcpClient.WriteToServer(messageDto);
+        return response.ResponseCode;
     }
 }

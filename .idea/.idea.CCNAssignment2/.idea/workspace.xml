@@ -8,7 +8,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="???" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/MyTcpClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/MyTcpClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookDTO_Builder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookDTO_Builder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/BookState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/BookState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/State/BookStateFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/State/BookStateFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EntityLayer/ResponseMessageDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/ResponseMessageDTO.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,8 +73,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Debug",
+    ".NET Project.CCNAssignment2.executor": "Debug",
+    ".NET Project.CCNAssignment2Server.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -72,7 +83,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
+    "settings.editor.selected.configurable": "project.propDebugger",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -87,7 +98,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.CCNAssignment2Server">
+  <component name="RunManager" selected=".NET Project.CCNAssignment2">
     <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -147,7 +158,8 @@
       <workItem from="1741770860629" duration="5557000" />
       <workItem from="1742548975032" duration="2384000" />
       <workItem from="1743697723279" duration="2357000" />
-      <workItem from="1743775389999" duration="1033000" />
+      <workItem from="1743775389999" duration="6786000" />
+      <workItem from="1743842845395" duration="1735000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -301,7 +313,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743776162811</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Converted server to use better formatted DTO.">
+      <option name="closed" value="true" />
+      <created>1743778325218</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743778325218</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixed some bizarre misinformed use of clean coding principles from original template.">
+      <option name="closed" value="true" />
+      <created>1743781412292</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743781412292</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,20 +358,22 @@
     <MESSAGE value="Made changes to try and fix issue with DB not connecting." />
     <MESSAGE value="Changed project to use MySQL instead of Oracle due to a bug in the Oracle connection." />
     <MESSAGE value="???" />
-    <option name="LAST_COMMIT_MESSAGE" value="???" />
+    <MESSAGE value="Converted server to use better formatted DTO." />
+    <MESSAGE value="Fixed some bizarre misinformed use of clean coding principles from original template." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bizarre misinformed use of clean coding principles from original template." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs</url>
-          <line>76</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\ServerGateway\ServerGatewayFacade.cs" containingFunctionPresentation="Method 'InitialiseDatabase'">
+          <line>101</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\ServerGateway\ServerGatewayFacade.cs" containingFunctionPresentation="Method 'GetAllBooks'">
             <startOffsets>
-              <option value="1769" />
+              <option value="2778" />
             </startOffsets>
             <endOffsets>
-              <option value="1839" />
+              <option value="2799" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />

@@ -1,4 +1,5 @@
-﻿using Entities.State;
+﻿using Entities;
+using Entities.State;
 
 namespace DTOs
 {
@@ -43,6 +44,12 @@ namespace DTOs
         public BookDTO_Builder WithState(string state)
         {
             this.state = state;
+            return this;
+        }
+
+        public BookDTO_Builder WithState(BookState state)
+        {
+            this.state = state.ToString();
             return this;
         }
 

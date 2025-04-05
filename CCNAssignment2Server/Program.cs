@@ -3,8 +3,14 @@
 Console.WriteLine("Simple server has started!");
 Server srvr = new Server();
 
-srvr.Start(); // a synchronous call
+srvr.Start();
 
-srvr.Stop();
+Console.CancelKeyPress += (sender, e) =>
+{
+    e.Cancel = true;
+    Console.WriteLine("\nStopping server...");
+    srvr.Stop();
+};
 
-Console.WriteLine("Simple server has finished!");
+Console.WriteLine("Press Ctrl+C to exit.");
+Thread.Sleep(Timeout.Infinite);

@@ -6,11 +6,11 @@
         {
             if (numberOfRenewals == -1)
             {
-                return BookState.Borrowed;
+                return BookState.Available;
             }
             else
             {
-                return BookState.Available;
+                return BookState.Borrowed;
             }
         }
 
