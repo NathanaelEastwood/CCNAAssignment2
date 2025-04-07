@@ -12,21 +12,25 @@ namespace DatabaseGateway
         public int Insert(T itemToInsert)
         {
             int numRowsInserted = 0;
-
-            MySqlConnection conn = GetConnection();
-
-            MySqlCommand command = GetCommand(conn);
+            MySqlConnection conn = null;
+            MySqlCommand command = null;
 
             try
             {
+                conn = GetConnection();
+                command = GetCommand(conn);
                 numRowsInserted = DoInsert(command, itemToInsert);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message, e);
             }
+            finally
+            {
+                command?.Dispose();
+                ReleaseConnection(conn);
+            }
 
-            ReleaseConnection(conn);
             return numRowsInserted;
         }
 

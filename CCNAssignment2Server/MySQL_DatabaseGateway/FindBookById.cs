@@ -29,26 +29,29 @@ namespace DatabaseGateway
             {
                 command.Parameters.AddWithValue("@BookId", bookId);
                 command.Prepare();
-                MySqlDataReader dr = command.ExecuteReader();
 
-                if (dr.Read())
+                using (var reader = command.ExecuteReader())
                 {
-                    int numRenewals = dr.IsDBNull(4) ? -1 : dr.GetInt32(4);
-                    book =
-                        new BookBuilder()
-                            .WithId(dr.GetInt32(0))
-                            .WithAuthor(dr.GetString(1))
-                            .WithTitle(dr.GetString(2))
-                            .WithISBN(dr.GetString(3))
+                    if (reader.Read())
+                    {
+                        int numRenewals = reader.IsDBNull(4) ? -1 : reader.GetInt32(4);
+                        book = new BookBuilder()
+                            .WithId(reader.GetInt32(0))
+                            .WithAuthor(reader.GetString(1))
+                            .WithTitle(reader.GetString(2))
+                            .WithISBN(reader.GetString(3))
                             .WithState(numRenewals)
                             .Build();
+                    }
                 }
-
-                dr.Close();
             }
             catch (Exception e)
             {
                 throw new Exception("ERROR: retrieval of book failed", e);
+            }
+            finally
+            {
+                command.Dispose();
             }
 
             return book;

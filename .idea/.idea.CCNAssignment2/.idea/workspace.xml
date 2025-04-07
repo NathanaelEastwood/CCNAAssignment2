@@ -9,14 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Fixed an issue where the wrong values were being used when returning a loan.">
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityLayer/ResponseMessageDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/ResponseMessageDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StressTester/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StressTester/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +44,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ba1a160ee284d78882db02b8c805f5952e060/f9/c5fd3d0f/OracleConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff6a4e819f424b80aa339b379172970e124648/2b/b5f369e1/MySqlDataReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Client/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/Server.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,39 +66,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Run",
-    ".NET Project.StressTestClient.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propDebugger",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.CCNAssignment2.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.CCNAssignment2Server.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.StressTestClient.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;,
+      &quot;mysql&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Natha\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Natha\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Project.CCNAssignment2">
-    <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+}</component>
+  <component name="RunManager" selected=".NET Project.StressTestClient">
+    <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project" singleton="false">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/CCNAssignment2Client/bin/Debug/net8.0-windows/CCNAssignment2Client.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CCNAssignment2Client/bin/Debug/net8.0-windows" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -110,7 +108,7 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net8.0-windows" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -133,10 +131,10 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="StressTestClient" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+    <configuration name="StressTestClient" type="DotNetProject" factoryName=".NET Project" singleton="false">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/StressTester/bin/Debug/net8.0-windows/StressTestClient.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StressTester/bin/Debug/net8.0-windows" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -146,11 +144,16 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net8.0-windows" />
       <method v="2">
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Project.CCNAssignment2" />
+      <item itemvalue=".NET Project.CCNAssignment2Server" />
+      <item itemvalue=".NET Project.StressTestClient" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -177,7 +180,8 @@
       <workItem from="1743775389999" duration="6786000" />
       <workItem from="1743842845395" duration="8912000" />
       <workItem from="1743858486160" duration="706000" />
-      <workItem from="1744013726858" duration="7432000" />
+      <workItem from="1744013726858" duration="10162000" />
+      <workItem from="1744024276693" duration="3335000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -379,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744016400042</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Added further concurrency mechanisms to the server project, and added a rapid fire test client.">
+      <option name="closed" value="true" />
+      <created>1744021472656</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1744021472656</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +401,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Full restructure." />
     <MESSAGE value="Added previously ignored files." />
     <MESSAGE value="Added database login screen." />
     <MESSAGE value="Added missing unversioned files." />
@@ -414,7 +425,8 @@
     <MESSAGE value="Stripped out garbage abstraction layers." />
     <MESSAGE value="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date." />
     <MESSAGE value="Fixed an issue where the wrong values were being used when returning a loan." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where the wrong values were being used when returning a loan." />
+    <MESSAGE value="Added further concurrency mechanisms to the server project, and added a rapid fire test client." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added further concurrency mechanisms to the server project, and added a rapid fire test client." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

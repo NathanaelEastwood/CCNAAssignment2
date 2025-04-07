@@ -19,11 +19,10 @@ namespace DatabaseGateway
         protected override List<Member> DoSelect(MySqlCommand command)
         {
             List<Member> members = new List<Member>();
-
+        
             try
             {
-                MySqlDataReader dr = command.ExecuteReader();
-
+                using var dr = command.ExecuteReader(); 
                 while (dr.Read())
                 {
                     Member member =

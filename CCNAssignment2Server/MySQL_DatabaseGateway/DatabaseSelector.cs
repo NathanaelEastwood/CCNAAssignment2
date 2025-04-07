@@ -12,21 +12,25 @@ namespace DatabaseGateway
         public T Select()
         {
             T item;
-
-            MySqlConnection conn = GetConnection();
-
-            MySqlCommand command = GetCommand(conn);
+            MySqlConnection conn = null;
+            MySqlCommand command = null;
 
             try
             {
+                conn = GetConnection();
+                command = GetCommand(conn);
                 item = DoSelect(command);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message, e);
             }
+            finally
+            {
+                command?.Dispose();
+                ReleaseConnection(conn);
+            }
 
-            ReleaseConnection(conn);
             return item;
         }
 

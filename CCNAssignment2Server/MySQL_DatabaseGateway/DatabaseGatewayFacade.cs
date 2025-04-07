@@ -1,5 +1,4 @@
 ﻿using Entities;
-using System.Collections.Generic;
 using UseCase;
 
 namespace DatabaseGateway

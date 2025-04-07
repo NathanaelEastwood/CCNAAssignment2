@@ -25,7 +25,7 @@ namespace Entities
         {
             return new Loan(id, member, book, loanDate, dueDate);
         }
-
+        
         public LoanBuilder WithBook(Book b)
         {
             this.book = b;

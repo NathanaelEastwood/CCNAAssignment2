@@ -34,12 +34,13 @@ namespace DatabaseGateway
 
         protected MySqlCommand GetCommand(MySqlConnection conn)
         {
-            return new MySqlCommand
+            var command = new MySqlCommand
             {
                 Connection = conn,
                 CommandText = GetSQL(),
                 CommandType = CommandType.Text
             };
+            return command;
         }
 
         protected abstract string GetSQL();

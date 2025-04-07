@@ -26,18 +26,17 @@ namespace DatabaseGateway
             {
                 command.Parameters.AddWithValue("@MemberId", memberId);
                 command.Prepare();
-                MySqlDataReader dr = command.ExecuteReader();
 
-                if (dr.Read())
+                using (var reader = command.ExecuteReader())
                 {
-                    member =
-                        new MemberBuilder()
-                            .WithId(dr.GetInt32(0))
-                            .WithName(dr.GetString(1))
+                    if (reader.Read())
+                    {
+                        member = new MemberBuilder()
+                            .WithId(reader.GetInt32(0))
+                            .WithName(reader.GetString(1))
                             .Build();
+                    }
                 }
-
-                dr.Close();
             }
             catch (Exception e)
             {

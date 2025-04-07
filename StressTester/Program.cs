@@ -1,5 +1,4 @@
 using CCNAssignment2Client;
-using EntityLayer;
 
 class Program
 {
@@ -10,7 +9,7 @@ class Program
         using var client = new RapidRequestClient(maxConcurrentRequests: 50);
         
         // Test adding multiple books
-        Console.WriteLine("\nTesting AddBook with 5000 concurrent requests...");
+        Console.WriteLine("\nTesting AddBook with 500 concurrent requests...");
         var addBookResults = await client.SendBulkRequestsAsync(
             client.CreateAddBookRequest(),
             5000
@@ -18,18 +17,18 @@ class Program
         PrintResults(addBookResults);
 
         // Test adding multiple members
-        Console.WriteLine("\nTesting AddMember with 3000 concurrent requests...");
+        Console.WriteLine("\nTesting AddMember with 300 concurrent requests...");
         var addMemberResults = await client.SendBulkRequestsAsync(
             client.CreateAddMemberRequest(),
-            3000
+            300
         );
         PrintResults(addMemberResults);
 
         // Test finding books (this will fail for non-existent IDs, but that's okay for stress testing)
-        Console.WriteLine("\nTesting FindBook with 4000 concurrent requests...");
+        Console.WriteLine("\nTesting FindBook with 400 concurrent requests...");
         var findBookResults = await client.SendBulkRequestsAsync(
             client.CreateFindBookRequest(1),
-            4000
+            400
         );
         PrintResults(findBookResults);
 

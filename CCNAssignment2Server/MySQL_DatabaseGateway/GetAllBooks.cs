@@ -25,8 +25,8 @@ namespace DatabaseGateway
             List<Book> books = new List<Book>();
             try
             {
-                MySqlDataReader dr = command.ExecuteReader();
-
+                
+                using var dr = command.ExecuteReader();
                 while (dr.Read())
                 {
                     int numRenewals = dr.IsDBNull(4) ? -1 : dr.GetInt32(4);

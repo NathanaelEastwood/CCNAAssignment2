@@ -9,7 +9,7 @@ namespace DatabaseGateway
     class DatabaseConnectionPool
     {
 
-        private static DatabaseConnectionPool instance = new DatabaseConnectionPool(10);
+        private static DatabaseConnectionPool instance = new DatabaseConnectionPool(50);
 
         public static DatabaseConnectionPool GetInstance()
         {
