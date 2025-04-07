@@ -42,7 +42,7 @@ public class Server
         {
             while (!token.IsCancellationRequested)
             {
-                TcpClient client = await _tcpListener.AcceptTcpClientAsync();
+                TcpClient client = await _tcpListener.AcceptTcpClientAsync(token);
                 Console.WriteLine("Client connected.");
 
                 _ = Task.Run(() => InteractWithClient(client), token);

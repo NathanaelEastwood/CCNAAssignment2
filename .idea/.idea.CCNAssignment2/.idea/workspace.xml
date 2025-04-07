@@ -8,106 +8,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Made server responses return data in form of ResponseMessageDTO.cs.">
-      <change afterPath="$PROJECT_DIR$/EntityLayer/Message.cs" afterDir="false" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/BorrowBookDialog.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/BorrowBookDialog.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/CommandLineUserInterface.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/BorrowBookCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/Command.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/CommandFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/NullCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/RenewLoanCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ReturnBookCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ViewAllBooksCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ViewAllMembersCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ViewCurrentLoansCommand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/ConsoleReader.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/ConsoleWriter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Menu/Menu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Menu/MenuElement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Menu/MenuFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Menu/MenuItem.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/AllBooksPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/AllMembersPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/CommandLineViewData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/CurrentLoansPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/MessagePresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/Visitor/LoanPrinter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/Visitor/MembersWithLoansCounter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/Visitor/Visitable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/Visitor/VisitableLoan.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Presenters/Visitor/Visitor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/RequestUseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/BorrowBookController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/InitialiseDatabaseController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/RenewLoanController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/ReturnBookController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/ViewAllBooksController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/ViewAllMembersController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Controllers_Component/ViewCurrentLoansController.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseConnectionPool.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseCredentialsManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseGatewayFacade.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseInitialiser.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseInserter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseOperationFactoryForBooks.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseOperationFactoryForLoans.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseOperationFactoryForMembers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseOperator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseSelector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/DatabaseUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/FindBookById.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/FindCurrentLoanById.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/FindMemberById.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/GetAllBooks.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/GetAllCurrentLoans.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/GetAllMembers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/IInserter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/ISelector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/IUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/InsertBook.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/InsertLoan.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/InsertMember.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/NullSelector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/NullUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/UpdateLoanRenewal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/Oracle_DatabaseGateway/UpdateLoanReturnDate.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/AbstractController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/AbstractPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/AbstractUseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookConverter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookDTO_Builder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/BookDTO_List.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/Converter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/IDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/LoanConverter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/LoanDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/LoanDTO_Builder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/LoanDTO_List.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/MemberConverter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/MemberDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/MemberDTO_Builder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/MemberDTO_List.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/DTOs/MessageDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/IDatabaseGatewayFacade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/IDatabaseGatewayFacade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/IViewData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/BorrowBook_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/InitialiseDatabase_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/RenewLoan_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/ReturnBook_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/ViewAllBooks_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/ViewAllMembers_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/UseCases_Component/UseCase/ViewCurrentLoans_UseCase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/WPFPresenters/UIViewData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/WPFPresenters/UIViewData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/RenewLoan_UseCase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/UseCases_Component/UseCase/RenewLoan_UseCase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,15 +39,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ba1a160ee284d78882db02b8c805f5952e060/f9/c5fd3d0f/OracleConnection.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/InitialiseDatabaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/NullCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/RenewLoanCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ReturnBookCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CCNAssignment2Client/CommandLineUI_Component/Commands/ViewAllBooksCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Client/UseCases_Component/DTOs/BookConverter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff6a4e819f424b80aa339b379172970e124648/2b/b5f369e1/MySqlDataReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="FORCE_HIGHLIGHTING" />
@@ -161,7 +63,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Run",
+    ".NET Project.CCNAssignment2Server.executor": "Debug",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -246,7 +148,9 @@
       <workItem from="1742548975032" duration="2384000" />
       <workItem from="1743697723279" duration="2357000" />
       <workItem from="1743775389999" duration="6786000" />
-      <workItem from="1743842845395" duration="7173000" />
+      <workItem from="1743842845395" duration="8912000" />
+      <workItem from="1743858486160" duration="706000" />
+      <workItem from="1744013726858" duration="1138000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -424,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743844739040</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Stripped out garbage abstraction layers.">
+      <option name="closed" value="true" />
+      <created>1743850239602</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743850239602</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,23 +368,89 @@
     <MESSAGE value="Converted server to use better formatted DTO." />
     <MESSAGE value="Fixed some bizarre misinformed use of clean coding principles from original template." />
     <MESSAGE value="Made server responses return data in form of ResponseMessageDTO.cs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made server responses return data in form of ResponseMessageDTO.cs." />
+    <MESSAGE value="Stripped out garbage abstraction layers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stripped out garbage abstraction layers." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs</url>
-          <line>101</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\ServerGateway\ServerGatewayFacade.cs" containingFunctionPresentation="Method 'GetAllBooks'">
+          <line>44</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\ServerGateway\ServerGatewayFacade.cs" containingFunctionPresentation="Method 'CreateLoan'">
             <startOffsets>
-              <option value="2778" />
+              <option value="1066" />
             </startOffsets>
             <endOffsets>
-              <option value="2799" />
+              <option value="1134" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
+          <line>136</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
+            <startOffsets>
+              <option value="4681" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4738" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
+          <line>225</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
+            <startOffsets>
+              <option value="8305" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8361" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/GetAllCurrentLoans.cs</url>
+          <line>50</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\MySQL_DatabaseGateway\GetAllCurrentLoans.cs" containingFunctionPresentation="Method 'DoSelect'">
+            <startOffsets>
+              <option value="1838" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2254" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs</url>
+          <line>36</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\EntityLayer\Entities_Component\LoanBuilder.cs" containingFunctionPresentation="Method 'WithDueDate'">
+            <startOffsets>
+              <option value="810" />
+            </startOffsets>
+            <endOffsets>
+              <option value="828" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs</url>
+          <line>25</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\EntityLayer\Entities_Component\LoanBuilder.cs" containingFunctionPresentation="Method 'Build'">
+            <startOffsets>
+              <option value="551" />
+            </startOffsets>
+            <endOffsets>
+              <option value="607" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

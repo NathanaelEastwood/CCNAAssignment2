@@ -23,7 +23,7 @@ namespace Entities
 
         public Loan Build()
         {
-            return new Loan(id, member, book, loanDate, returnDate);
+            return new Loan(id, member, book, loanDate, dueDate);
         }
 
         public LoanBuilder WithBook(Book b)

@@ -149,7 +149,7 @@ public partial class MainWindow
             try
             {
                 var returnedData = _databaseGatewayFacade.CreateLoan(new Loan(0, _selectedMember, _selectedBook,
-                    DateTime.Now, DateTime.Today));
+                    DateTime.Now, DateTime.Today.AddDays(7)));
                 ResultsTextBlock.Text = $"Loan Added with Status Code: {returnedData}";
                 LoadInitialData(); // Refresh all lists
             }

@@ -14,13 +14,14 @@ namespace Entities
         public DateTime ReturnDate { get; set; }
 
         [JsonConstructor]
-        public Loan(int id, Member member, Book book, DateTime loanDate, DateTime returnDate)
+        public Loan(int id, Member member, Book book, DateTime loanDate, DateTime dueDate)
         {
             ID = id;
             Member = member;
             Book = book;
             LoanDate = loanDate;
-            ReturnDate = returnDate;
+            DueDate = dueDate;
+            ReturnDate = dueDate;
         }
     }
 }
