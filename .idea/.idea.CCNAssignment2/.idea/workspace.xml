@@ -8,12 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +39,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Nullable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ba1a160ee284d78882db02b8c805f5952e060/f9/c5fd3d0f/OracleConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff6a4e819f424b80aa339b379172970e124648/2b/b5f369e1/MySqlDataReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -63,7 +63,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Debug",
+    ".NET Project.CCNAssignment2Server.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -87,7 +87,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.CCNAssignment2">
+  <component name="RunManager" selected=".NET Project.CCNAssignment2Server">
     <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -150,7 +150,7 @@
       <workItem from="1743775389999" duration="6786000" />
       <workItem from="1743842845395" duration="8912000" />
       <workItem from="1743858486160" duration="706000" />
-      <workItem from="1744013726858" duration="1138000" />
+      <workItem from="1744013726858" duration="2537000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -336,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743850239602</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date.">
+      <option name="closed" value="true" />
+      <created>1744015187664</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1744015187664</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,46 +377,21 @@
     <MESSAGE value="Fixed some bizarre misinformed use of clean coding principles from original template." />
     <MESSAGE value="Made server responses return data in form of ResponseMessageDTO.cs." />
     <MESSAGE value="Stripped out garbage abstraction layers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stripped out garbage abstraction layers." />
+    <MESSAGE value="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2Client/ServerGateway/ServerGatewayFacade.cs</url>
-          <line>44</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\ServerGateway\ServerGatewayFacade.cs" containingFunctionPresentation="Method 'CreateLoan'">
-            <startOffsets>
-              <option value="1066" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1134" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
-          <line>136</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
-            <startOffsets>
-              <option value="4681" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4738" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
           <line>225</line>
           <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
             <startOffsets>
-              <option value="8305" />
+              <option value="8321" />
             </startOffsets>
             <endOffsets>
-              <option value="8361" />
+              <option value="8377" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
@@ -425,32 +408,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs</url>
-          <line>36</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\EntityLayer\Entities_Component\LoanBuilder.cs" containingFunctionPresentation="Method 'WithDueDate'">
-            <startOffsets>
-              <option value="810" />
-            </startOffsets>
-            <endOffsets>
-              <option value="828" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs</url>
-          <line>25</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\EntityLayer\Entities_Component\LoanBuilder.cs" containingFunctionPresentation="Method 'Build'">
-            <startOffsets>
-              <option value="551" />
-            </startOffsets>
-            <endOffsets>
-              <option value="607" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

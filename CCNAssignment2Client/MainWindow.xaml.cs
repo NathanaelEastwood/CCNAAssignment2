@@ -185,7 +185,7 @@ public partial class MainWindow
         {
             try
             {
-                var returnedData = _databaseGatewayFacade.EndLoan(_selectedMember.ID, _selectedBook.ID);
+                var returnedData = _databaseGatewayFacade.EndLoan(_selectedLoan.Member.ID, _selectedLoan.Book.ID);
                 ResultsTextBlock.Text = $"Book returned with Status Code: {returnedData}";
                 LoadInitialData(); // Refresh all lists
             }

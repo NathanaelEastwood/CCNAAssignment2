@@ -142,9 +142,9 @@ public class Server
                     throw new Exception("Incorrect parameters given for action CreateLoan");
                 }
             case "EndLoan":
-                if (clientMessageDto is { Loan: not null, Book: not null })
+                if (clientMessageDto is { MemberId: not null, BookId: not null })
                 {
-                    _databaseGatewayFacade.EndLoan(clientMessageDto.Loan.ID, clientMessageDto.Book.ID);
+                    _databaseGatewayFacade.EndLoan((int)clientMessageDto.MemberId, (int)clientMessageDto.BookId);
                     return new ResponseMessageDTO { ResponseCode = 1 };
                 }
                 else
