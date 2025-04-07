@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Collections.Concurrent;
 using DatabaseGateway;
 using Entities;
 using EntityLayer;
@@ -13,6 +14,18 @@ public class Server
     private readonly TcpListener _tcpListener;
     private readonly IDatabaseGatewayFacade _databaseGatewayFacade;
     private readonly CancellationTokenSource _cts = new CancellationTokenSource();
+    
+    // Request queue for handling concurrent client requests
+    private readonly BlockingCollection<RequestItem> _requestQueue = new BlockingCollection<RequestItem>();
+    private readonly List<Task> _workerTasks = new List<Task>();
+    private readonly int _workerCount = Environment.ProcessorCount; // Number of worker threads based on CPU cores
+
+    // Class to hold request information
+    private class RequestItem
+    {
+        public ClientMessageDTO ClientMessage { get; set; }
+        public TaskCompletionSource<ResponseMessageDTO> ResponseSource { get; set; }
+    }
 
     public Server()
     {
@@ -25,6 +38,13 @@ public class Server
     {
         _tcpListener.Start();
         Console.WriteLine("Server started. Listening for clients...");
+        
+        // Start worker threads to process the request queue
+        for (int i = 0; i < _workerCount; i++)
+        {
+            _workerTasks.Add(Task.Run(() => ProcessRequestsWorker(_cts.Token)));
+        }
+        Console.WriteLine($"Started {_workerCount} worker threads to process requests");
 
         Task.Run(() => AcceptClientsLoopAsync(_cts.Token));
     }
@@ -33,7 +53,11 @@ public class Server
     {
         Console.WriteLine("Stopping server...");
         _cts.Cancel();
+        _requestQueue.CompleteAdding(); // Signal to workers that no more items will be added
         _tcpListener.Stop();
+        
+        // Wait for all workers to complete (with a timeout)
+        Task.WaitAll(_workerTasks.ToArray(), 5000);
     }
 
     private async Task AcceptClientsLoopAsync(CancellationToken token)
@@ -79,16 +103,37 @@ public class Server
                             continue;
                         }
 
-                        Console.WriteLine("Processing request: " + clientMessage.Action);
-                        ResponseMessageDTO responseContent = ProcessClientMessage(clientMessage);
-
-                        string responseJson = JsonSerializer.Serialize(responseContent);
-                        await writer.WriteLineAsync(responseJson);
+                        Console.WriteLine($"Queueing request: {clientMessage.Action}");
+                        
+                        // Create a TaskCompletionSource to get the result asynchronously
+                        var responseSource = new TaskCompletionSource<ResponseMessageDTO>();
+                        
+                        // Add the request to the queue
+                        if (!_requestQueue.IsAddingCompleted)
+                        {
+                            _requestQueue.Add(new RequestItem 
+                            { 
+                                ClientMessage = clientMessage,
+                                ResponseSource = responseSource
+                            });
+                            
+                            // Wait for the response from the worker thread
+                            var responseContent = await responseSource.Task;
+                            string responseJson = JsonSerializer.Serialize(responseContent);
+                            await writer.WriteLineAsync(responseJson);
+                        }
+                        else
+                        {
+                            // Server is shutting down
+                            await writer.WriteLineAsync(JsonSerializer.Serialize(
+                                new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Server is shutting down" }));
+                        }
                     }
                     catch (JsonException)
                     {
                         Console.WriteLine("Received invalid JSON.");
-                        await writer.WriteLineAsync(JsonSerializer.Serialize(new { Error = "Invalid JSON format." }));
+                        await writer.WriteLineAsync(JsonSerializer.Serialize(
+                            new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Invalid JSON format." }));
                     }
                 }
             }
@@ -105,10 +150,47 @@ public class Server
         }
     }
 
+    // Worker method to process requests from the queue
+    private void ProcessRequestsWorker(CancellationToken token)
+    {
+        try
+        {
+            while (!token.IsCancellationRequested && !_requestQueue.IsCompleted)
+            {
+                // Try to take an item from the queue with a timeout
+                if (_requestQueue.TryTake(out RequestItem requestItem, 100))
+                {
+                    try
+                    {
+                        Console.WriteLine($"Worker {Environment.CurrentManagedThreadId} processing request: {requestItem.ClientMessage.Action}. Current queue length is: {_requestQueue.Count}");
+                        var response = ProcessClientMessage(requestItem.ClientMessage);
+                        requestItem.ResponseSource.SetResult(response);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Set the exception so the client thread can handle it
+                        requestItem.ResponseSource.SetResult(new ResponseMessageDTO 
+                        { 
+                            ResponseCode = 0, 
+                            ErrorMessage = $"Error processing request: {ex.Message}" 
+                        });
+                        Console.WriteLine($"Error processing request: {ex.Message}");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Worker thread error: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine("Worker thread exiting");
+        }
+    }
 
     private ResponseMessageDTO ProcessClientMessage(ClientMessageDTO clientMessageDto)
     {
-        Console.WriteLine("Client says: " + clientMessageDto.Action);
         switch (clientMessageDto.Action)
         {
             case "AddBook":

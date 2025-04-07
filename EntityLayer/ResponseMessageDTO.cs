@@ -9,4 +9,5 @@ public class ResponseMessageDTO
     public List<Book>? Book { get; set; }
     public List<Loan>? Loan { get; set; }
     public List<Member>? Member { get; set; }
+    public string? ErrorMessage { get; set; }
 }

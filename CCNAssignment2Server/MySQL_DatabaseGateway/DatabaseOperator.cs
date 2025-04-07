@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System.Threading;
 
 namespace DatabaseGateway
 {
@@ -7,9 +8,28 @@ namespace DatabaseGateway
     // methods in DatabaseSelector, DatabaseInserter and DatabaseUpdater
     abstract class DatabaseOperator
     {
+        private const int MaxRetries = 3;
+        private const int RetryDelayMs = 100;
+
         protected MySqlConnection GetConnection()
         {
-            return DatabaseConnectionPool.GetInstance().AcquireConnection();
+            int retries = 0;
+            MySqlConnection conn = null;
+            
+            while (retries < MaxRetries)
+            {
+                conn = DatabaseConnectionPool.GetInstance().AcquireConnection();
+                if (conn != null)
+                {
+                    return conn;
+                }
+                
+                // If we couldn't get a connection, wait a bit and try again
+                Thread.Sleep(RetryDelayMs);
+                retries++;
+            }
+            
+            throw new Exception("ERROR: Could not acquire a database connection after multiple attempts");
         }
 
         protected MySqlCommand GetCommand(MySqlConnection conn)
@@ -26,7 +46,10 @@ namespace DatabaseGateway
 
         protected void ReleaseConnection(MySqlConnection conn)
         {
-            DatabaseConnectionPool.GetInstance().ReleaseConnection(conn);
+            if (conn != null)
+            {
+                DatabaseConnectionPool.GetInstance().ReleaseConnection(conn);
+            }
         }
     }
 }

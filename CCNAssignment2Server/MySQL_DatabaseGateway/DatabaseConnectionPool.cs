@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DatabaseGateway
 {
@@ -8,7 +9,7 @@ namespace DatabaseGateway
     class DatabaseConnectionPool
     {
 
-        private static DatabaseConnectionPool instance = new DatabaseConnectionPool(1);
+        private static DatabaseConnectionPool instance = new DatabaseConnectionPool(10);
 
         public static DatabaseConnectionPool GetInstance()
         {
@@ -16,6 +17,8 @@ namespace DatabaseGateway
         }
         private List<MySqlConnection> availableConnections;
         private List<MySqlConnection> busyConnections;
+        private readonly object lockObject = new object();
+        private readonly int maxWaitTimeMs = 5000;
 
         protected DatabaseConnectionPool(int sizeOfPool)
         {
@@ -45,15 +48,32 @@ namespace DatabaseGateway
 
         public MySqlConnection AcquireConnection()
         {
-            if (availableConnections.Count > 0)
+            int waitTime = 0;
+            int waitInterval = 100;
+            
+            while (waitTime < maxWaitTimeMs)
             {
-                MySqlConnection conn = availableConnections[0];
-                availableConnections.RemoveAt(0);
-                busyConnections.Add(conn);
-                return conn;
+                lock (lockObject)
+                {
+                    if (availableConnections.Count > 0)
+                    {
+                        MySqlConnection conn = availableConnections[0];
+                        availableConnections.RemoveAt(0);
+                        busyConnections.Add(conn);
+                        return conn;
+                    }
+                }
+                
+                Thread.Sleep(waitInterval);
+                waitTime += waitInterval;
             }
-
-            return null;
+            
+            MySqlConnection newConn = CreateConnection();
+            lock (lockObject)
+            {
+                busyConnections.Add(newConn);
+            }
+            return newConn;
         }
 
         private void CloseConnection(MySqlConnection conn)
@@ -93,10 +113,19 @@ namespace DatabaseGateway
 
         public void ReleaseConnection(MySqlConnection conn)
         {
-            if (busyConnections.Contains(conn))
+            if (conn == null) return;
+            
+            lock (lockObject)
             {
-                busyConnections.Remove(conn);
-                availableConnections.Add(conn);
+                if (busyConnections.Contains(conn))
+                {
+                    busyConnections.Remove(conn);
+                    availableConnections.Add(conn);
+                }
+                else
+                {
+                    CloseConnection(conn);
+                }
             }
         }
     }

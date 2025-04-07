@@ -62,23 +62,48 @@ namespace DatabaseGateway
         public void Initialise()
         {
             DatabaseConnectionPool connectionPool = DatabaseConnectionPool.GetInstance();
-            MySqlConnection conn = connectionPool.AcquireConnection();
-
-            foreach (MySqlCommand c in commandSequence)
+            MySqlConnection conn = null;
+            int retries = 0;
+            const int maxRetries = 3;
+            
+            while (retries < maxRetries && conn == null)
             {
-                //Console.WriteLine(c.CommandText);
-                try
+                conn = connectionPool.AcquireConnection();
+                if (conn == null)
                 {
-                    c.Connection = conn;
-                    c.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("ERROR: SQL command failed\n" + e.StackTrace, e);
+                    System.Threading.Thread.Sleep(100); // Wait 100ms before retrying
+                    retries++;
                 }
             }
+            
+            if (conn == null)
+            {
+                throw new Exception("ERROR: Could not acquire a database connection for initialization");
+            }
 
-            connectionPool.ReleaseConnection(conn);
+            try
+            {
+                foreach (MySqlCommand c in commandSequence)
+                {
+                    //Console.WriteLine(c.CommandText);
+                    try
+                    {
+                        c.Connection = conn;
+                        c.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("ERROR: SQL command failed\n" + e.StackTrace, e);
+                    }
+                }
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    connectionPool.ReleaseConnection(conn);
+                }
+            }
         }
     }
 }
