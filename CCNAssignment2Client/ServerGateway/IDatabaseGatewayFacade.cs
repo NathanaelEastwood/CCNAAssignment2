@@ -6,28 +6,28 @@ namespace UseCase
 
     public interface IDatabaseGatewayFacade
     {
-        public int AddBook(Book b);
+        public void AddBook(Book b);
 
-        public int AddMember(Member m);
+        public void AddMember(Member m);
 
-        public int CreateLoan(Loan loan);
+        public void CreateLoan(Loan loan);
 
-        public int EndLoan(int memberId, int bookId);
+        public void EndLoan(int memberId, int bookId);
 
-        public Book FindBook(int bookId);
+        public void FindBook(int bookId);
 
-        public Loan FindLoan(int memberId, int bookId);
+        public void FindLoan(int memberId, int bookId);
 
-        public Member FindMember(int memberId);
+        public void FindMember(int memberId);
 
-        public List<Book> GetAllBooks();
+        public void GetAllBooks();
 
-        public List<Member> GetAllMembers();
+        public void GetAllMembers();
 
-        public List<Loan> GetCurrentLoans();
+        public void GetCurrentLoans();
 
         public void InitialiseDatabase();
 
-        public int RenewLoan(Loan loan);
+        public void RenewLoan(Loan loan);
     }
 }

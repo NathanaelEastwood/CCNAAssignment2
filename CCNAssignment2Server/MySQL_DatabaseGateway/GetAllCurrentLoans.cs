@@ -1,7 +1,5 @@
 ﻿using Entities;
-using Entities.State;
 using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 
 namespace DatabaseGateway
 {

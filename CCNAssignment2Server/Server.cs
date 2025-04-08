@@ -13,14 +13,17 @@ public class Server
 {
     private readonly TcpListener _tcpListener;
     private readonly IDatabaseGatewayFacade _databaseGatewayFacade;
-    private readonly CancellationTokenSource _cts = new CancellationTokenSource();
+    private readonly CancellationTokenSource _cts = new();
     
     // Request queue for handling concurrent client requests
     private readonly BlockingCollection<RequestItem> _requestQueue = new BlockingCollection<RequestItem>();
     private readonly List<Task> _workerTasks = new List<Task>();
     private readonly int _workerCount = Environment.ProcessorCount; // Number of worker threads based on CPU cores
+    
+    // Collection of all active streams
+    private readonly ConcurrentBag<StreamWriter> _connectedClients = [];
 
-    // Class to hold request information
+    // Combined response and input object,
     private class RequestItem
     {
         public ClientMessageDTO ClientMessage { get; set; }
@@ -86,10 +89,12 @@ public class Server
     {
         using (tcpClient)
         {
-            using NetworkStream stream = tcpClient.GetStream();
+            await using NetworkStream stream = tcpClient.GetStream();
             using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-            using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8) { AutoFlush = true };
-
+            await using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+            writer.AutoFlush = true;
+            _connectedClients.Add(writer);
+            
             try
             {
                 while (await reader.ReadLineAsync() is { } clientJson)
@@ -147,6 +152,24 @@ public class Server
             }
 
             Console.WriteLine("Client disconnected.");
+        }
+    }
+    
+    // This method is to broadcast the updated values of loans/books when a request is recived from another client.
+    private void BroadcastMessage(ResponseMessageDTO messageDto)
+    {
+        string messageJson = JsonSerializer.Serialize(messageDto);
+
+        foreach (StreamWriter writer in _connectedClients)
+        {
+            try
+            {
+                writer.WriteLineAsync(messageJson);
+            }
+            catch
+            {
+                
+            }
         }
     }
 
@@ -217,6 +240,9 @@ public class Server
                 if (clientMessageDto.Loan != null)
                 {
                     _databaseGatewayFacade.CreateLoan(clientMessageDto.Loan);
+                    List<Loan> newLoans = _databaseGatewayFacade.GetCurrentLoans();
+                    List<Book> newBooks = _databaseGatewayFacade.GetAllBooks();
+                    BroadcastMessage(new ResponseMessageDTO{ ResponseCode = 1, Book = newBooks, Loan = newLoans });
                     return new ResponseMessageDTO { ResponseCode = 1 };
                 }
                 else

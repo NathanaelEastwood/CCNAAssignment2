@@ -12,6 +12,7 @@ public static class MyTcpClient
     private static NetworkStream _stream;
     private static StreamReader _reader;
     private static StreamWriter _writer;
+    public static event Action<ResponseMessageDTO> OnMessageReceived;
 
     static MyTcpClient()
     {
@@ -29,7 +30,10 @@ public static class MyTcpClient
             _tcpClient.Connect(url, portNumber);
             _stream = _tcpClient.GetStream();
             _reader = new StreamReader(_stream, System.Text.Encoding.UTF8);
-            _writer = new StreamWriter(_stream, System.Text.Encoding.UTF8);
+            _writer = new StreamWriter(_stream, System.Text.Encoding.UTF8) { AutoFlush = true };
+
+            // Start listening to server messages
+            Task.Run(ListenForMessages); 
         }
         catch (Exception e)
         {
@@ -39,22 +43,33 @@ public static class MyTcpClient
         return true;
     }
 
-    public static ResponseMessageDTO WriteToServer(ClientMessageDTO clientMessageDto)
+    private static async Task ListenForMessages()
     {
-        Console.WriteLine($"Writing line with {clientMessageDto.Action}");
+        try
+        {
+            while (true)
+            {
+                var line = await _reader.ReadLineAsync();
+                if (line == null) break;
 
-        // Serialize and send the message
-        string jsonMessage = JsonSerializer.Serialize(clientMessageDto);
-        _writer.WriteLine(jsonMessage); // Send message with newline
-        _writer.Flush(); // Ensure data is sent immediately
+                Console.WriteLine($"[Server] {line}");
+                var message = JsonSerializer.Deserialize<ResponseMessageDTO>(line);
 
-        // Read the response from the server
-        string responseLine = _reader.ReadLine(); // Assuming _reader is a StreamReader
-        Console.WriteLine($"Received response: {responseLine}");
-
-        // Deserialize the response
-        ResponseMessageDTO response = JsonSerializer.Deserialize<ResponseMessageDTO>(responseLine);
-        return response;
+                if (message != null)
+                    OnMessageReceived?.Invoke(message);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in listener: {ex.Message}");
+        }
     }
 
+    
+    public static void WriteToServer(ClientMessageDTO clientMessageDto)
+    {
+        Console.WriteLine($"Writing line with {clientMessageDto.Action}");
+        string jsonMessage = JsonSerializer.Serialize(clientMessageDto);
+        _writer.WriteLine(jsonMessage);
+    }
 }

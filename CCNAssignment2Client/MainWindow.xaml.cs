@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using CCNAssignment2.ServerGateway;
 using Entities;
+using EntityLayer;
 using UseCase;
 
 namespace CCNAssignment2;
@@ -34,28 +35,46 @@ public partial class MainWindow
             Application.Current.Shutdown();
         }
     }
+    
+    
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         SetupButtonHandlers();
         LoadInitialData();
+        MyTcpClient.OnMessageReceived += HandleServerBroadcast;
+    }
+    
+    private void HandleServerBroadcast(ResponseMessageDTO message)
+    {
+        // Ensure this executes on the WPF UI thread
+        Dispatcher.Invoke(() =>
+        {
+            if (message.Book != null)
+            {
+                BooksGrid.ItemsSource = message.Book;
+            }
+            
+            if (message.Loan != null)
+            {
+                LoansGrid.ItemsSource = message.Loan;
+            }
+            
+            if (message.Member != null)
+            {
+                MembersGrid.ItemsSource = message.Member;
+            }
+        });
     }
 
+    
     private void LoadInitialData()
     {
         try
         {
-            // Load books
-            var booksData = _databaseGatewayFacade.GetAllBooks();
-            BooksGrid.ItemsSource = booksData;
-
-            // Load members
-            var membersData = _databaseGatewayFacade.GetAllMembers();
-            MembersGrid.ItemsSource = membersData;
-
-            // Load loans
-            var loansData = _databaseGatewayFacade.GetCurrentLoans();
-            LoansGrid.ItemsSource = loansData;
+            _databaseGatewayFacade.GetAllBooks();
+            _databaseGatewayFacade.GetAllMembers();
+            _databaseGatewayFacade.GetCurrentLoans();
         }
         catch (Exception ex)
         {
@@ -148,10 +167,7 @@ public partial class MainWindow
         {
             try
             {
-                var returnedData = _databaseGatewayFacade.CreateLoan(new Loan(0, _selectedMember, _selectedBook,
-                    DateTime.Now, DateTime.Today.AddDays(7)));
-                ResultsTextBlock.Text = $"Loan Added with Status Code: {returnedData}";
-                LoadInitialData(); // Refresh all lists
+                _databaseGatewayFacade.CreateLoan(new Loan(0, _selectedMember, _selectedBook, DateTime.Now, DateTime.Today.AddDays(7))); 
             }
             catch (Exception ex)
             {
@@ -167,10 +183,8 @@ public partial class MainWindow
             try
             {
                 Loan previousLoan = _selectedLoan;
-                var returnedData = _databaseGatewayFacade.RenewLoan(new Loan(previousLoan.ID, previousLoan.Member,
+                _databaseGatewayFacade.RenewLoan(new Loan(previousLoan.ID, previousLoan.Member,
                     previousLoan.Book, previousLoan.LoanDate, previousLoan.ReturnDate + new TimeSpan(1, 0, 0, 0)));
-                ResultsTextBlock.Text = $"Loan renewed with Status Code: {returnedData}";
-                LoadInitialData(); // Refresh all lists
             }
             catch (Exception ex)
             {
@@ -185,9 +199,7 @@ public partial class MainWindow
         {
             try
             {
-                var returnedData = _databaseGatewayFacade.EndLoan(_selectedLoan.Member.ID, _selectedLoan.Book.ID);
-                ResultsTextBlock.Text = $"Book returned with Status Code: {returnedData}";
-                LoadInitialData(); // Refresh all lists
+                _databaseGatewayFacade.EndLoan(_selectedLoan.Member.ID, _selectedLoan.Book.ID);
             }
             catch (Exception ex)
             {
@@ -208,17 +220,17 @@ public partial class MainWindow
                 switch (content)
                 {
                     case "Refresh Books":
-                        BooksGrid.ItemsSource = _databaseGatewayFacade.GetAllBooks();
+                        _databaseGatewayFacade.GetAllBooks();
                         ResultsTextBlock.Text = "Books list refreshed";
                         break;
 
                     case "Refresh Members":
-                        MembersGrid.ItemsSource = _databaseGatewayFacade.GetAllMembers();
+                        _databaseGatewayFacade.GetAllMembers();
                         ResultsTextBlock.Text = "Members list refreshed";
                         break;
 
                     case "Refresh Loans":
-                        LoansGrid.ItemsSource = _databaseGatewayFacade.GetCurrentLoans();
+                        _databaseGatewayFacade.GetCurrentLoans();
                         ResultsTextBlock.Text = "Loans list refreshed";
                         break;
 

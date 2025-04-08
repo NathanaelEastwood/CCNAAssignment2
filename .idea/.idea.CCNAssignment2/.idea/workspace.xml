@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StressTester/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StressTester/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,23 +34,16 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Nullable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/ExceptionServices/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ba1a160ee284d78882db02b8c805f5952e060/f9/c5fd3d0f/OracleConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff6a4e819f424b80aa339b379172970e124648/2b/b5f369e1/MySqlDataReader.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Client/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseConnectionPool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseOperator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/InsertLoan.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/Server.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/Server.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/StressTester/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -182,6 +172,7 @@
       <workItem from="1743858486160" duration="706000" />
       <workItem from="1744013726858" duration="10162000" />
       <workItem from="1744024276693" duration="3335000" />
+      <workItem from="1744034344926" duration="2361000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -391,7 +382,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744021472656</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Made fixes to prevent starvation due to prepared statements not being disposed of.">
+      <option name="closed" value="true" />
+      <created>1744035996633</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1744035996633</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +400,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added previously ignored files." />
     <MESSAGE value="Added database login screen." />
     <MESSAGE value="Added missing unversioned files." />
     <MESSAGE value="Fixed an issue where MainWindow didn't have a constructor." />
@@ -426,7 +424,8 @@
     <MESSAGE value="Fixed an issue where the return date was being passed by the LoanBuilder.cs rather than due date." />
     <MESSAGE value="Fixed an issue where the wrong values were being used when returning a loan." />
     <MESSAGE value="Added further concurrency mechanisms to the server project, and added a rapid fire test client." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added further concurrency mechanisms to the server project, and added a rapid fire test client." />
+    <MESSAGE value="Made fixes to prevent starvation due to prepared statements not being disposed of." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made fixes to prevent starvation due to prepared statements not being disposed of." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -443,19 +442,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/GetAllCurrentLoans.cs</url>
-          <line>50</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\MySQL_DatabaseGateway\GetAllCurrentLoans.cs" containingFunctionPresentation="Method 'DoSelect'">
-            <startOffsets>
-              <option value="1838" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2254" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
