@@ -182,7 +182,114 @@ namespace CCNAssignment2Client
             return results.ToList();
         }
 
+        public async Task<List<RequestResult>> SendBulkRandomRequestsAsync(int count)
+        {
+            var tasks = new List<Task<RequestResult>>();
+            for (int i = 0; i < count; i++)
+            {
+                var message = CreateRandomRequest();
+                tasks.Add(SendRequestAsync(message));
+            }
+
+            var results = await Task.WhenAll(tasks);
+            return results.ToList();
+        }
         // Helper methods to create test data
+
+        public ClientMessageDTO CreateRandomRequest()
+        {
+            var useCase = _random.Next(0, 10);
+
+            ClientMessageDTO request;
+            
+            switch (useCase)
+            {
+                case 0:
+                    request = CreateAddBookRequest();
+                    break;
+                case 1:
+                    request = CreateAddMemberRequest();
+                    break;
+                case 2:
+                    request = CreateAddLoanRequest();
+                    break;
+                case 3:
+                    request = CreateFindBookRequest(_random.Next(0, 6000));
+                    break;
+                case 4:
+                    request = CreateFindLoanRequest(_random.Next(0, 5000), _random.Next(0, 5000));
+                    break;
+                case 5:
+                    request = CreateFindMemberRequest(_random.Next(0, 5000));
+                    break;
+                case 6:
+                    request = CreateEndLoanRequest(_random.Next(0, 5000), _random.Next(0, 5000));
+                    break;
+                case 7:
+                    request = CreateGetAllBooksRequest();
+                    break;
+                case 8:
+                    request = CreateGetAllMembersRequest();
+                    break;
+                case 9:
+                    request = CreateGetCurrentLoansRequest();
+                    break;
+                case 10:
+                    request = CreateRenewLoanRequest();
+                    break;
+                default:
+                    throw new Exception("Incorrect option specified.");
+            }
+
+            return request;
+        }
+
+        private ClientMessageDTO CreateRenewLoanRequest()
+        {
+            return new ClientMessageDTO
+            {
+                Action = "RenewLoan",
+                Loan =  new Loan(_random.Next(0, 6000), new Member(_random.Next(0, 6000), "TestMember"),
+                    new Book(_random.Next(0, 6000), "TestAuth", "TestBook", "A123", BookState.Available), DateTime.Now,
+                    DateTime.Now)
+            };
+        } 
+        
+        private ClientMessageDTO CreateGetCurrentLoansRequest()
+        {
+            return new ClientMessageDTO
+            { 
+                Action = "GetCurrentLoans"
+            };
+        }
+        
+        private ClientMessageDTO CreateGetAllMembersRequest()
+        {
+            return new ClientMessageDTO
+            {
+                Action = "GetAllMembers"
+            };
+        }
+
+        private ClientMessageDTO CreateGetAllBooksRequest()
+        {
+            return new ClientMessageDTO
+            {
+                Action = "GetAllBooks"
+            };
+        }
+        
+        public ClientMessageDTO CreateAddLoanRequest()
+        {
+            return new ClientMessageDTO
+            {
+                Action = "CreateLoan",
+                LoanId = _random.Next(100000, 999999),
+                Loan = new Loan(_random.Next(100000, 999999), new Member(_random.Next(0, 6000), "TestMember"),
+                    new Book(_random.Next(0, 6000), "TestAuth", "TestBook", "A123", BookState.Available), DateTime.Now,
+                    DateTime.Now)
+            };
+        }
         public ClientMessageDTO CreateAddBookRequest(string title = "Test Book", string author = "Test Author")
         {
             return new ClientMessageDTO
@@ -210,6 +317,35 @@ namespace CCNAssignment2Client
             };
         }
 
+        private ClientMessageDTO CreateFindMemberRequest(int memberId)
+        {
+            return new ClientMessageDTO
+            {
+                MemberId = memberId,
+                Action = "FindMember"
+            };
+        }
+
+        private ClientMessageDTO CreateFindLoanRequest(int bookId, int memberId)
+        {
+            return new ClientMessageDTO
+            {
+                Action = "FindLoan",
+                BookId = bookId,
+                MemberId = memberId
+            };
+        }
+
+        private ClientMessageDTO CreateEndLoanRequest(int memberId, int bookId)
+        {
+            return new ClientMessageDTO
+            {
+                MemberId = memberId,
+                BookId = bookId,
+                Action = "EndLoan"
+            };
+        }
+    
         public void Dispose()
         {
             _semaphore.Dispose();

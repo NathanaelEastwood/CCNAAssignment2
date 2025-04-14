@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="" />
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CCNAssignment2Server/ClientHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StressTester/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StressTester/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StressTester/RapidRequestClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StressTester/RapidRequestClient.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +90,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.StressTestClient">
+  <component name="RunManager" selected=".NET Project.CCNAssignment2">
     <configuration name="CCNAssignment2" type="DotNetProject" factoryName=".NET Project" singleton="false">
       <option name="EXE_PATH" value="$PROJECT_DIR$/CCNAssignment2Client/bin/Debug/net8.0-windows/CCNAssignment2Client.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -432,13 +438,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
-          <line>307</line>
+          <line>384</line>
           <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
             <startOffsets>
-              <option value="12162" />
+              <option value="15465" />
             </startOffsets>
             <endOffsets>
-              <option value="12218" />
+              <option value="15521" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />

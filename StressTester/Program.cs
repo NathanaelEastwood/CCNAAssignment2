@@ -9,29 +9,41 @@ class Program
         using var client = new RapidRequestClient(maxConcurrentRequests: 50);
         
         // Test adding multiple books
-        Console.WriteLine("\nTesting AddBook with 500 concurrent requests...");
+        Console.WriteLine("\nTesting AddBook with 5000 concurrent requests...");
         var addBookResults = await client.SendBulkRequestsAsync(
             client.CreateAddBookRequest(),
             5000
         );
         PrintResults(addBookResults);
-
+        
         // Test adding multiple members
-        Console.WriteLine("\nTesting AddMember with 300 concurrent requests...");
+        Console.WriteLine("\nTesting AddMember with 3000 concurrent requests...");
         var addMemberResults = await client.SendBulkRequestsAsync(
             client.CreateAddMemberRequest(),
-            300
+            5000
         );
         PrintResults(addMemberResults);
 
+        // Test adding multiple loans
+        Console.WriteLine("\nTesting AddLoan with 5000 concurrent requests...");
+        var addLoanResults = await client.SendBulkRequestsAsync(
+            client.CreateAddMemberRequest(),
+            5000
+        );
+        PrintResults(addLoanResults);
+        
         // Test finding books (this will fail for non-existent IDs, but that's okay for stress testing)
-        Console.WriteLine("\nTesting FindBook with 400 concurrent requests...");
+        Console.WriteLine("\nTesting FindBook with 4000 concurrent requests...");
         var findBookResults = await client.SendBulkRequestsAsync(
             client.CreateFindBookRequest(1),
-            400
+            4000
         );
         PrintResults(findBookResults);
-
+        
+        Console.WriteLine("\nTesting 10,000 randomly allocated requests");
+        var randomResults = await client.SendBulkRandomRequestsAsync(10000);
+        PrintResults(randomResults);
+        
         Console.WriteLine("\nStress Test Completed!");
     }
 
@@ -53,7 +65,7 @@ class Program
         if (failed > 0)
         {
             Console.WriteLine("\nFailed Requests:");
-            foreach (var result in results.Where(r => !r.IsSuccessful))
+            foreach (var result in results.Where(r => !r.IsSuccessful).Take(5))
             {
                 Console.WriteLine($"Request {result.RequestId}: {result.ErrorMessage}");
             }

@@ -22,6 +22,8 @@ public class Server
     
     // Collection of all active streams
     private readonly ConcurrentBag<StreamWriter> _connectedClients = [];
+    // Track active clients with their locks for synchronized access
+    private readonly ConcurrentDictionary<StreamWriter, SemaphoreSlim> _clientLocks = new();
 
     // Combined response and input object,
     private class RequestItem
@@ -93,7 +95,11 @@ public class Server
             using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             await using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
             writer.AutoFlush = true;
+            
+            // Add the client with its own lock object for synchronized access
+            var clientLock = new SemaphoreSlim(1, 1);
             _connectedClients.Add(writer);
+            _clientLocks[writer] = clientLock;
             
             try
             {
@@ -109,36 +115,76 @@ public class Server
                         }
 
                         Console.WriteLine($"Queueing request: {clientMessage.Action}");
-                        
+
                         // Create a TaskCompletionSource to get the result asynchronously
                         var responseSource = new TaskCompletionSource<ResponseMessageDTO>();
-                        
+
                         // Add the request to the queue
                         if (!_requestQueue.IsAddingCompleted)
                         {
-                            _requestQueue.Add(new RequestItem 
-                            { 
+                            _requestQueue.Add(new RequestItem
+                            {
                                 ClientMessage = clientMessage,
                                 ResponseSource = responseSource
                             });
-                            
+
                             // Wait for the response from the worker thread
                             var responseContent = await responseSource.Task;
                             string responseJson = JsonSerializer.Serialize(responseContent);
-                            await writer.WriteLineAsync(responseJson);
+                            
+                            // Acquire lock before writing to the stream
+                            await clientLock.WaitAsync();
+                            try
+                            {
+                                await writer.WriteLineAsync(responseJson);
+                            }
+                            finally
+                            {
+                                clientLock.Release();
+                            }
                         }
                         else
                         {
                             // Server is shutting down
-                            await writer.WriteLineAsync(JsonSerializer.Serialize(
-                                new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Server is shutting down" }));
+                            await clientLock.WaitAsync();
+                            try
+                            {
+                                await writer.WriteLineAsync(JsonSerializer.Serialize(
+                                    new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Server is shutting down" }));
+                            }
+                            finally
+                            {
+                                clientLock.Release();
+                            }
                         }
                     }
                     catch (JsonException)
                     {
                         Console.WriteLine("Received invalid JSON.");
-                        await writer.WriteLineAsync(JsonSerializer.Serialize(
-                            new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Invalid JSON format." }));
+                        await clientLock.WaitAsync();
+                        try
+                        {
+                            await writer.WriteLineAsync(JsonSerializer.Serialize(
+                                new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Invalid JSON format." }));
+                        }
+                        finally
+                        {
+                            clientLock.Release();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Request failed");
+                        await clientLock.WaitAsync();
+                        try
+                        {
+                            await writer.WriteLineAsync(JsonSerializer.Serialize(
+                                new ResponseMessageDTO { ResponseCode = 0, ErrorMessage = "Request failed, try checking the request parameters." }));
+                        }
+                        finally
+                        {
+                            clientLock.Release();
+                        }
                     }
                 }
             }
@@ -150,27 +196,58 @@ public class Server
             {
                 Console.WriteLine("Unexpected error: " + e.Message);
             }
+            finally
+            {
+                // Cleanup client resources
+                _clientLocks.TryRemove(writer, out _);
+            }
 
             Console.WriteLine("Client disconnected.");
         }
     }
     
-    // This method is to broadcast the updated values of loans/books when a request is recived from another client.
+    // This method is to broadcast the updated values of loans/books when a request is received from another client.
     private void BroadcastMessage(ResponseMessageDTO messageDto)
     {
         string messageJson = JsonSerializer.Serialize(messageDto);
 
-        foreach (StreamWriter writer in _connectedClients)
+        // Create a copy of the connected clients to avoid issues with concurrent modification
+        var clients = _connectedClients.ToArray();
+        
+        // Use a separate task for broadcasting to avoid blocking the worker thread
+        Task.Run(async () => 
         {
-            try
+            foreach (var writer in clients)
             {
-                writer.WriteLineAsync(messageJson);
-            }
-            catch
-            {
+                // Skip disconnected clients
+                if (writer == null || !_clientLocks.TryGetValue(writer, out var clientLock))
+                    continue;
                 
+                // Try to acquire the lock, but don't wait indefinitely if stream is busy
+                bool lockAcquired = await clientLock.WaitAsync(50);
+                if (!lockAcquired)
+                {
+                    // Client is busy with a request, will try again on next broadcast
+                    continue;
+                }
+                
+                try
+                {
+                    // Check if we can still write to this client
+                    await writer.WriteLineAsync(messageJson);
+                    await writer.FlushAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error broadcasting to client: {ex.Message}");
+                    // Don't remove the client here as it may still be in use
+                }
+                finally
+                {
+                    clientLock.Release();
+                }
             }
-        }
+        });
     }
 
     // Worker method to process requests from the queue
