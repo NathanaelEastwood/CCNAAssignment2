@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Configuration;
+using System.Text.Json.Serialization;
 
 namespace Entities
 {
@@ -22,6 +23,16 @@ namespace Entities
             LoanDate = loanDate;
             DueDate = dueDate;
             ReturnDate = dueDate;
+        }
+
+        public Loan(int id, Member member, Book book, DateTime loanDate, DateTime dueDate, int numberOfRenewals)
+        {
+            ID = id;
+            Member = member;
+            Book = book;
+            LoanDate = loanDate;
+            DueDate = dueDate;
+            NumberOfRenewals = numberOfRenewals;
         }
     }
 }

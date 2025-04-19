@@ -43,6 +43,18 @@ namespace DatabaseGateway
             CommandType = CommandType.Text
         };
 
+        private readonly MySqlCommand populateMemberTable = new MySqlCommand
+        {
+            CommandText = "INSERT INTO SDAM_Member (Name) VALUES \n('Graham'),\n('Bob'),\n('Nathanael');\n",
+            CommandType = CommandType.Text
+        };
+
+        private readonly MySqlCommand populateBookTable = new MySqlCommand
+        {
+            CommandText = "INSERT INTO sdam_book (author, title, isbn) VALUES \n('Test Author', 'Test Book 1', 'A12345'),\n('Test Author 2', 'Test Book 2', 'A12346'),\n('Test Author 3', 'Test Book 2', 'A12347');\n"
+        };
+        
+
         private readonly List<MySqlCommand> commandSequence;
 
         public DatabaseInitialiser()
@@ -55,7 +67,10 @@ namespace DatabaseGateway
 
                 createBookTable,
                 createMemberTable,
-                createLoanTable
+                createLoanTable,
+                
+                populateMemberTable,
+                populateBookTable
             };
         }
 
@@ -85,7 +100,6 @@ namespace DatabaseGateway
             {
                 foreach (MySqlCommand c in commandSequence)
                 {
-                    //Console.WriteLine(c.CommandText);
                     try
                     {
                         c.Connection = conn;

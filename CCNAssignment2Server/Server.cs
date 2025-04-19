@@ -50,7 +50,9 @@ public class Server
             _workerTasks.Add(Task.Run(() => ProcessRequestsWorker(_cts.Token)));
         }
         Console.WriteLine($"Started {_workerCount} worker threads to process requests");
-
+        
+        _databaseGatewayFacade.InitialiseDatabase();
+        
         Task.Run(() => AcceptClientsLoopAsync(_cts.Token));
     }
 
@@ -291,6 +293,7 @@ public class Server
 
     private ResponseMessageDTO ProcessClientMessage(ClientMessageDTO clientMessageDto)
     {
+        List<Loan> loans;
         switch (clientMessageDto.Action)
         {
             case "AddBook":
@@ -319,7 +322,7 @@ public class Server
                     _databaseGatewayFacade.CreateLoan(clientMessageDto.Loan);
                     List<Loan> newLoans = _databaseGatewayFacade.GetCurrentLoans();
                     List<Book> newBooks = _databaseGatewayFacade.GetAllBooks();
-                    BroadcastMessage(new ResponseMessageDTO{ ResponseCode = 1, Book = newBooks, Loan = newLoans });
+                    BroadcastMessage(new ResponseMessageDTO { ResponseCode = 1, Book = newBooks, Loan = newLoans });
                     return new ResponseMessageDTO { ResponseCode = 1 };
                 }
                 else
@@ -330,7 +333,13 @@ public class Server
                 if (clientMessageDto is { MemberId: not null, BookId: not null })
                 {
                     _databaseGatewayFacade.EndLoan((int)clientMessageDto.MemberId, (int)clientMessageDto.BookId);
-                    return new ResponseMessageDTO { ResponseCode = 1 };
+                    List<Loan> newLoans = _databaseGatewayFacade.GetCurrentLoans();
+                    List<Book> newBooks = _databaseGatewayFacade.GetAllBooks();
+                    BroadcastMessage(new ResponseMessageDTO { ResponseCode = 1, Book = newBooks, Loan = newLoans });
+                    return new ResponseMessageDTO
+                    {
+                        ResponseCode = 1,
+                    };
                 }
                 else
                 {
@@ -343,7 +352,7 @@ public class Server
                     return new ResponseMessageDTO
                     {
                         ResponseCode = 1,
-                        Book = new List<Book>{book}
+                        Book = new List<Book> { book }
                     };
                 }
                 else
@@ -353,11 +362,12 @@ public class Server
             case "FindLoan":
                 if (clientMessageDto is { BookId: not null, LoanId: not null })
                 {
-                    Loan loan = _databaseGatewayFacade.FindLoan((int)clientMessageDto.LoanId, (int)clientMessageDto.BookId);
+                    Loan loan = _databaseGatewayFacade.FindLoan((int)clientMessageDto.LoanId,
+                        (int)clientMessageDto.BookId);
                     return new ResponseMessageDTO
                     {
                         ResponseCode = 1,
-                        Loan = new List<Loan>{loan}
+                        Loan = new List<Loan> { loan }
                     };
                 }
                 else
@@ -371,7 +381,7 @@ public class Server
                     return new ResponseMessageDTO
                     {
                         ResponseCode = 1,
-                        Member = new List<Member>{member}
+                        Member = new List<Member> { member }
                     };
                 }
                 else
@@ -393,7 +403,7 @@ public class Server
                     Member = members
                 };
             case "GetCurrentLoans":
-                List<Loan> loans = _databaseGatewayFacade.GetCurrentLoans();
+                loans = _databaseGatewayFacade.GetCurrentLoans();
                 return new ResponseMessageDTO
                 {
                     ResponseCode = 1,
@@ -409,6 +419,8 @@ public class Server
                 if (clientMessageDto.Loan != null)
                 {
                     _databaseGatewayFacade.RenewLoan(clientMessageDto.Loan);
+                    var newLoans = _databaseGatewayFacade.GetCurrentLoans();
+                    BroadcastMessage(new ResponseMessageDTO { ResponseCode = 1, Loan = newLoans });
                     return new ResponseMessageDTO
                     {
                         ResponseCode = 1
@@ -418,6 +430,7 @@ public class Server
                 {
                     throw new Exception("Incorrect parameters given for action RenewLoan");
                 }
+
                 break;
             default:
                 throw new Exception("Unknown request type.");

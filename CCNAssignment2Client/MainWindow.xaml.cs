@@ -21,19 +21,7 @@ public partial class MainWindow
     {
         InitializeComponent();
         _databaseGatewayFacade = new ServerGatewayFacade();
-        
-        // Show login window when created through XAML
-        var loginWindow = new DatabaseLoginWindow();
-        if (loginWindow.ShowDialog() == true)
-        {
-            var credentials = loginWindow.Credentials;
-            InitializeDatabase();
-            Loaded += MainWindow_Loaded;
-        }
-        else
-        {
-            Application.Current.Shutdown();
-        }
+        Loaded += MainWindow_Loaded;
     }
     
     
@@ -79,25 +67,6 @@ public partial class MainWindow
         catch (Exception ex)
         {
             ResultsTextBlock.Text = $"Error loading initial data: {ex.Message}";
-        }
-    }
-
-    private void InitializeDatabase()
-    {
-        try
-        {
-            _databaseGatewayFacade.InitialiseDatabase();
-            _databaseGatewayFacade.AddBook(new Book(1, "Beff Jezos", "Amazong 101", "A1230", BookState.Available));
-            _databaseGatewayFacade.AddBook(new Book(2, "Beff Jezos", "Amazong 102", "A1231", BookState.Available));
-            _databaseGatewayFacade.AddBook(new Book(3, "Beff Jezos", "Amazong 103", "A1232", BookState.Available));
-
-            _databaseGatewayFacade.AddMember(new Member(1, "Nathanael"));
-            _databaseGatewayFacade.AddMember(new Member(2, "Grace"));
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Error initializing database: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            Application.Current.Shutdown();
         }
     }
 
@@ -183,8 +152,9 @@ public partial class MainWindow
             try
             {
                 Loan previousLoan = _selectedLoan;
-                _databaseGatewayFacade.RenewLoan(new Loan(previousLoan.ID, previousLoan.Member,
-                    previousLoan.Book, previousLoan.LoanDate, previousLoan.ReturnDate + new TimeSpan(1, 0, 0, 0)));
+                Loan newLoan = new Loan(previousLoan.ID, previousLoan.Member, previousLoan.Book, previousLoan.LoanDate, previousLoan.DueDate + new TimeSpan(7, 0, 0, 0));
+                newLoan.NumberOfRenewals = previousLoan.NumberOfRenewals + 1;
+                _databaseGatewayFacade.RenewLoan(newLoan);
             }
             catch (Exception ex)
             {
