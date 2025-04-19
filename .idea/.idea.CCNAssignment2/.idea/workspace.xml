@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="">
+    <list default="true" id="90c74817-4d6e-4736-9cec-cb9611763c6f" name="Changes" comment="Fixed various bugs related to due date and renewal count.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CCNAssignment2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/DatabaseLoginWindow.xaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/DatabaseLoginWindow.xaml.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CCNAssignment2Server/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/Loan.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EntityLayer/Entities_Component/LoanBuilder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseGatewayFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/DatabaseInitialiser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/UpdateLoanRenewal.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Git/CCNAAssignment2/CCNAssignment2/CCNAssignment2Server/MySQL_DatabaseGateway/UpdateLoanReturnDate.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs" root0="FORCE_HIGHLIGHTING" />
@@ -74,7 +69,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Project.CCNAssignment2.executor": "Run",
-    ".NET Project.CCNAssignment2Server.executor": "Debug",
+    ".NET Project.CCNAssignment2Server.executor": "Run",
     ".NET Project.StressTestClient.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -196,7 +191,7 @@
       <workItem from="1744878338452" duration="12063000" />
       <workItem from="1744964258374" duration="2000" />
       <workItem from="1744964346736" duration="4015000" />
-      <workItem from="1745056624646" duration="4215000" />
+      <workItem from="1745056624646" duration="5182000" />
     </task>
     <task id="LOCAL-00001" summary="Full restructure.">
       <option name="closed" value="true" />
@@ -422,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744643308198</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Fixed various bugs related to due date and renewal count.">
+      <option name="closed" value="true" />
+      <created>1745063670440</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1745063670440</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +435,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added missing unversioned files." />
     <MESSAGE value="Fixed an issue where MainWindow didn't have a constructor." />
     <MESSAGE value="Adjusted to use UI Commands instead of old ConsoleUI Commands. Made the table displayed from a command adjusted to the generic." />
     <MESSAGE value="Moved Books, Members and Loans into their own UI elements." />
@@ -457,33 +459,21 @@
     <MESSAGE value="Added further concurrency mechanisms to the server project, and added a rapid fire test client." />
     <MESSAGE value="Made fixes to prevent starvation due to prepared statements not being disposed of." />
     <MESSAGE value="Added random requests section to the stress test process. Fixed an issue where messages would be attempted to be broadcast while the stream they were using was in use." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added random requests section to the stress test process. Fixed an issue where messages would be attempted to be broadcast while the stream they were using was in use." />
+    <MESSAGE value="Fixed various bugs related to due date and renewal count." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed various bugs related to due date and renewal count." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
-          <line>420</line>
+          <line>402</line>
           <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
             <startOffsets>
-              <option value="16893" />
+              <option value="16213" />
             </startOffsets>
             <endOffsets>
-              <option value="16949" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CCNAssignment2Server/Server.cs</url>
-          <line>405</line>
-          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Server\Server.cs" containingFunctionPresentation="Method 'ProcessClientMessage'">
-            <startOffsets>
-              <option value="16350" />
-            </startOffsets>
-            <endOffsets>
-              <option value="16399" />
+              <option value="16262" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="15" />
@@ -500,6 +490,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/CCNAssignment2Client/MainWindow.xaml.cs</url>
+          <line>154</line>
+          <properties documentPath="E:\Git\CCNAAssignment2\CCNAssignment2\CCNAssignment2Client\MainWindow.xaml.cs" containingFunctionPresentation="Method 'RenewLoanButton_Click'">
+            <startOffsets>
+              <option value="4379" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4532" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

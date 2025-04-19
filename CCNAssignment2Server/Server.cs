@@ -212,14 +212,11 @@ public class Server
     private void BroadcastMessage(ResponseMessageDTO messageDto)
     {
         string messageJson = JsonSerializer.Serialize(messageDto);
-
-        // Create a copy of the connected clients to avoid issues with concurrent modification
-        var clients = _connectedClients.ToArray();
         
         // Use a separate task for broadcasting to avoid blocking the worker thread
         Task.Run(async () => 
         {
-            foreach (var writer in clients)
+            foreach (var writer in _connectedClients)
             {
                 // Skip disconnected clients
                 if (writer == null || !_clientLocks.TryGetValue(writer, out var clientLock))
